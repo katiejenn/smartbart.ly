@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 		@user = User.find_by({id: params[:id]})
 	end
 
-	def show_stations
-	end
+	# def show_stations
+	# 	@user = User.find_by({id: params[:id]})
+	# end
 end
