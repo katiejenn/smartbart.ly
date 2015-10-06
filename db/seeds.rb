@@ -8,6 +8,7 @@
 
 
 # Stations
+
 stationsAll = []
 stationsAll = stationsAll.push(
  {name: "12th St. Oakland City Center", address: "1245 Broadway, Oakland, CA 94612", latitude: 37.803664, longitude: -122.271604},
@@ -55,4 +56,10 @@ stationsAll = stationsAll.push(
  {name: "West Dublin/Pleasanton", address: "6501 Golden Gate Drive, Dublin, CA 94568", latitude: 37.699759, longitude: -121.928099},
  {name: "West Oakland", address: "1451 7th Street, Oakland, CA 94607", latitude: 37.80467476, longitude: -122.2945822},
  )
+
+Station.destroy_all
 stationsAll.each{|x| Station.create(x)}
+
+
+
+

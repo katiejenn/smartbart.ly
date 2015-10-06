@@ -1,5 +1,8 @@
-<h1>smartbart.ly</h1>
+<div class="container">
+	<h1>smartbart.ly</h1>
 
-<% @stations.each do |station| %>
-<%= station.name %><br>
-<% end %>
+	<% @stations.each do |station| %>
+	<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+	<%= station.name %><br>
+	<% end %>
+</div>
