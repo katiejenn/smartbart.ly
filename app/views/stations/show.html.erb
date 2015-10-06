@@ -1,6 +1,9 @@
 <h1><%= @wantedStation.name %></h1>
-<% @stationTimes.each do |key, route| %>
-	Route: <% route.each do |stop_time| %>
-		<p><%= stop_time %></p>
+<% @stationTimes.each do |routeNumber, route| %>
+	<% @wantedRoute = getRouteName(routeNumber) %>
+	<h2><%= @wantedRoute.name %></h2>
+	<% route.each do |arrival_time| %>
+		<%= arrival_time %>
 	<% end %>
+	<br>
 <% end %>
