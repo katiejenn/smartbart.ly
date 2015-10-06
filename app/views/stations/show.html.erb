@@ -5,9 +5,20 @@
 	<% end %>
 <% end %>
 
-<%= form_for(@tip, url: tips_path) do |f| %>
-	<%= f.text_area :description, placeholder: "Add a tip about this station!" %>
-	<%= f.hidden_field :user_id, value: @current_user.id %>
-	<%= f.hidden_field :station_id, value: params[:id] %>
-	<%= f.submit "Share", class: "btn-submit" %>
+<h3>User Tips</h3>
+<% if @tips %>
+	<% @tips.each do |tip| %>
+		<p><%= "#{tip.user.first_name} #{tip.user.last_name} #{tip.created_at} #{tip.description}" %></p>
+	<% end %>
+<% else %>
+	<p>There are no tips for this station yet.</p>
+<% end %>
+
+<% if @current_user %>
+	<%= form_for(@tip, url: tips_path) do |f| %>
+		<%= f.text_area :description, placeholder: "Add a tip about this station!" %>
+		<%= f.hidden_field :user_id, value: @current_user.id %>
+		<%= f.hidden_field :station_id, value: params[:id] %>
+		<%= f.submit "Share", class: "btn-submit" %>
+	<% end %>
 <% end %>

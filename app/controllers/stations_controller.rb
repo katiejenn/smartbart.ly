@@ -5,6 +5,8 @@ class StationsController < ApplicationController
 
   def show
   	@tip = Tip.new
+    @tips = Tip.where(station_id: params[:id]).order(:created_at).reverse
+    # binding.pry
   	apiData = BartAPI.new()
   	@stationRoutes = []
   	@stationTimes = {}
