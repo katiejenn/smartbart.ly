@@ -1,17 +1,17 @@
 <h1><%= @wantedStation.name %></h1>
-<% @stationTimes.each do |routeNumber, route| %>
-	<% @wantedRoute = getRouteName(routeNumber) %>
-	<h2><%= @wantedRoute.name %></h2>
-	<% route.each do |arrival_time| %>
+<% @stationTimes.each do |lineNumber, line| %>
+	<% @wantedLine = getLineName(lineNumber) %>
+	<h2><%= @wantedLine.name %></h2>
+	<% line.each do |arrival_time| %>
 		<%= arrival_time %>
 	<% end %>
 	<br>
 <% end %>
 
 <h3>User Tips</h3>
-<% if @tips %>
+<% if !@tips.empty? %>
 	<% @tips.each do |tip| %>
-		<p><%= "#{tip.user.first_name} #{tip.user.last_name} #{tip.created_at} #{tip.description}" %></p>
+		<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
 	<% end %>
 <% else %>
 	<p>There are no tips for this station yet.</p>
