@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get 'stations/index', to: "stations#index"
   get 'stations/:id', to: "stations#show"
 
+  post '/tips', to: "tips#create"
+
 end
