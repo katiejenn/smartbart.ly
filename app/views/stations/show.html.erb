@@ -1,2 +1,6 @@
-<h1>Stations#show</h1>
-<p>Find me in app/views/stations/show.html.erb</p>
+<h1><%= @wantedStation.name %></h1>
+<% @stationTimes.each do |route| %>
+	Route: <% route.each do |stop| %>
+		<p><%= stop %></p>
+	<% end %>
+<% end %>
