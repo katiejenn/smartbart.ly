@@ -1,5 +1,5 @@
 <h1>smartbart.ly</h1>
 
 <% @stations.each do |station| %>
-<%= station.name %><br>
+<%= link_to station.name, station_path(station.slug) %><br>
 <% end %>
