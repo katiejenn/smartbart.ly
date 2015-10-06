@@ -8,4 +8,10 @@ module StationsHelper
 		end
 	end
 
+	def getRouteName(routeNumber)
+		if routeNumber != nil
+			Route.find_by_number(routeNumber)
+		end
+	end
+
 end
