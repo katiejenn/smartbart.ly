@@ -6,4 +6,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include SessionsHelper
   include StationsHelper
+  before_action :current_user
+  
+
 end

@@ -5,6 +5,9 @@ class StationsController < ApplicationController
   end
 
   def show
+  	@tip = Tip.new
+    @tips = Tip.where(station_id: params[:id]).order(:created_at).reverse
+
   	@stationRoutes = []
   	@stationTimes = {}
 
@@ -33,5 +36,4 @@ class StationsController < ApplicationController
   		end
   	end
   end
-
 end
