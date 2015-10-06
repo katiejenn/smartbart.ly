@@ -1,6 +1,6 @@
 <h1><%= @wantedStation.name %></h1>
-<% @stationTimes.each do |route| %>
-	Route: <% route.each do |stop| %>
-		<p><%= stop %></p>
+<% @stationTimes.each do |key, route| %>
+	Route: <% route.each do |stop_time| %>
+		<p><%= stop_time %></p>
 	<% end %>
 <% end %>
