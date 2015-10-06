@@ -1,1 +1,0 @@
-{"name"=>"Oakland Int'l Airport - Coliseum", "abbr"=>"OAKL-COLS", "routeID"=>"ROUTE 20", "number"=>"20", "origin"=>"OAKL", "destination"=>"COLS", "direction"=>"south", "color"=>"#d5cfa3", "holidays"=>"1", "num_stns"=>"2", "config"=>{"station"=>["OAKL", "COLS"]}}
