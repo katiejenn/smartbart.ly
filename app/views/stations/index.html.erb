@@ -2,7 +2,8 @@
 	<h1>smartbart.ly</h1>
 
 	<% @stations.each do |station| %>
-	<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+	<span class="glyphicon glyphicon-heart" aria-hidden="true" id="<%=station.id%>" onclick="alert('you clicked on <%= station.name %>, id: <%= station.id %>!')"></span>
 	<%= station.name %><br>
 	<% end %>
+
 </div>
