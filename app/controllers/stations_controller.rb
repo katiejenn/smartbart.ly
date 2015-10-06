@@ -8,20 +8,14 @@ class StationsController < ApplicationController
   	@stationRoutes = []
   	@stationTimes = {}
 
+  	wantedStation = Station.find_by_id(params[:id])
+
   	# get the specified station's info, can replace mlbr with info from the params later on
-  	station = apiData.station("stninfo", {orig: "mlbr"})
+  	station = apiData.station("stninfo", {orig: wantedStation.abbreviation})
 
   	# drill down to the routes we need and append them to the array of routes
-  	if station["root"]["stations"]["station"]["north_routes"] != nil
-  		station["root"]["stations"]["station"]["north_routes"]["route"].each do |route|
-  			@stationRoutes.push(route[/\d/])
-  		end
-  	end
-  	if station["root"]["stations"]["station"]["south_routes"] != nil
-  		station["root"]["stations"]["station"]["south_routes"]["route"].each do |route|
-  			@stationRoutes.push(route[/\d/])
-  		end
-  	end
+  	getRoutes(station, "north_routes")
+  	getRoutes(station, "south_routes")
 
   	# go through each route's schedule and find the station and its associated time
   	@stationRoutes.each do |route|
@@ -29,7 +23,7 @@ class StationsController < ApplicationController
   		routeSchedule = apiData.schedule("routesched", {route: route})
   		routeSchedule["root"]["route"]["train"].each do |train|
   			train["stop"].each do |stop|
-  				if stop["station"].downcase == "mlbr" && stop["origTime"] != nil
+  				if stop["station"].downcase == wantedStation.abbreviation && stop["origTime"] != nil
   					@stationTimes["#{route}"].push(stop["origTime"])
   					break
   				end
