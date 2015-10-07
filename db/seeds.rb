@@ -77,7 +77,7 @@ linesAll.push(
 	{name: "Oakland Int'l Airport - Coliseum", abbreviation: "OAKL-COLS", "number"=>"20", direction: "south", color: "#d5cfa3", stations: ["OAKL", "COLS"]}
 	)
 
-routesAll.each{|x| Route.create(x)}
+# routesAll.each{|x| Route.create(x)}
 
 linesAll.each{|x| Line.create(x)}
 
