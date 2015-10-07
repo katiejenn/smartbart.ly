@@ -25,8 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap-sass', '~> 3.3.5'
-gem 'autoprefixer-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -37,16 +35,38 @@ gem 'autoprefixer-rails'
 # Use HTTParty for API requests
 gem 'httparty'
 
+# Use Friendly_id for more user friendly urls
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # Call 'pry-byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry-byebug'
+
+  # Use 'rspec-rails' for testing
+  gem 'rspec-rails', '~> 3.0'
+
+  # Use 'shoulda-matchers' for more easily understood phrases
+  gem 'shoulda-matchers', require: false
+
+  # Use 'factory girl' for more testing
+  gem 'factory_girl_rails'
+
+  # Use pry for easier legibility in the console
+  gem 'pry-rails'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'pry-rails'
+
+  # Use 'rspec-rails' for testing
+  gem 'rspec-rails', '~> 3.0'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
+group :production do
+  # Use the Rais 12 Factor gem for deployment to Heroku
+  gem  'rails_12factor'
+end

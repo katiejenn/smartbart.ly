@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+ root 'stations#index'
 
   get '/sign_in', to:'sessions#new'
   post "/sessions", to: "sessions#create"
@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :stations, :users
 
   post 'favorites/new/:id', to: 'favorites#create'
+
+  post '/tips', to: "tips#create"
 
 
 end
