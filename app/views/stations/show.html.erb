@@ -2,6 +2,7 @@
 <% @stationTimes.each do |lineNumber, line| %>
 	<% @wantedLine = getLineName(lineNumber) %>
 	<h2><%= @wantedLine.name %></h2>
+	<h3><%= @wantedLine.direction %></h3>
 	<% line.each do |arrival_time| %>
 		<%= arrival_time %>
 	<% end %>

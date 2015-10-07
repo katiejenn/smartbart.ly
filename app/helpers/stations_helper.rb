@@ -2,8 +2,12 @@ module StationsHelper
 
 	def getLines(station, lineDirection)
 		if station["root"]["stations"]["station"][lineDirection] != nil
-			station["root"]["stations"]["station"][lineDirection]["route"].each do |line|
-				@stationLines.push(line[/\d/])
+			if station["root"]["stations"]["station"][lineDirection]["route"].respond_to?("each")
+				station["root"]["stations"]["station"][lineDirection]["route"].each do |line|
+					@stationLines.push(line.gsub(/[^\d]/, ''))
+				end
+			else
+				@stationLines.push(station["root"]["stations"]["station"][lineDirection]["route"].gsub(/[^\d]/, ''))
 			end
 		end
 	end
