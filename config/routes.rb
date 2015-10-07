@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :stations, :users
 
   post 'favorites/new/:id', to: 'favorites#create'
+  delete 'favorites/:id', to: 'favorites#destroy'
 
   post '/tips', to: "tips#create"
 

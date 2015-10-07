@@ -5,7 +5,8 @@ function clickHeart(station)
 	// if ($el.hasClass("hearted")) {
 	// 	deleteFavorite();
 	// } else {
-		addFavorite(stationId);
+		//addFavorite(stationId);
+		deleteFavorite(stationId)
 	// }
 }
 function addFavorite(stationId) 
@@ -17,17 +18,20 @@ function addFavorite(stationId)
 }
 
 function deleteFavorite(stationId) 
-{
-	// $.ajax({
-	// 	url: '/list/' + taskId,
-	// 	type: 'DELETE',
-	// 	success: function(res){
-	// 		//once successful, re-render all tasks
-	// 		getTasks();
-	// 	},
-	// 	error: function(res){
-	// 		getTasks();
-	// 	}
-	// });
+{	
+	console.log(stationId, "station id")
+	var foo = "/favorites/"+stationId
+	console.log("foo: " + foo)
+	$.ajax({
+		url: foo,//"/favorites/"+ stationId,
+		type: 'DELETE',
+		success: function(res){
+			alert("You just deleted station " + stationId + " from your favorites!");
+		}
+		// ,
+		// error: function(res){
+			
+		// }
+	});
 }
 

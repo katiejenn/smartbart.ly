@@ -13,6 +13,15 @@ class FavoritesController < ApplicationController
 	end
 
 	def destroy
+		@user = User.find(current_user)
+		@station = Station.find(params[:id])
+		@user.stations.destroy(@station)
+		if @user.save
+			puts "updated!!!!!!!!!!!!!!!"
+			# redirect_to stations_path
+		else
+			render :message_2
+		end
 	end
 
 
