@@ -6,10 +6,10 @@ class FavoritesController < ApplicationController
 		
 		@user.stations << @station
 		if @user.save
-			render json: @user, status: :created
+			render json: @station, status: :created
 			# redirect_to stations_path
 		else
-			render status: :bad_request
+			render status: 501
 		end
 	end
 
@@ -17,11 +17,12 @@ class FavoritesController < ApplicationController
 		@user = User.find(current_user)
 		@station = Station.find(params[:id])
 		@user.stations.destroy(@station)
+		puts "\n\n\n\n\n", @user.stations(@station)
 		# render nothing: true
 		if @user.save
-			render status: :ok
+			render json: @station
 		else
-			render :status :bad_request
+			render status: 501
 		end
 	end
 
