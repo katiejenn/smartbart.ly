@@ -1,27 +1,25 @@
 class FavoritesController < ApplicationController
 	def create
-		# binding.pry
 		@user = User.find(current_user)
 		@station = Station.find(params[:id])
 		
 		@user.stations << @station
 		if @user.save
-			render json: @user, status: :created
-			# redirect_to stations_path
+			render json: @station, status: :created
 		else
-			render status: :bad_request
+			render status: 501
 		end
 	end
 
 	def destroy
 		@user = User.find(current_user)
 		@station = Station.find(params[:id])
+
 		@user.stations.destroy(@station)
-		# render nothing: true
 		if @user.save
-			render status: :ok
+			render json: @station
 		else
-			render :status :bad_request
+			render status: 501
 		end
 	end
 
