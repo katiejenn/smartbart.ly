@@ -5,8 +5,10 @@ class StationsController < ApplicationController
   end
 
   def show
-  	@stationLines = []
-  	@stationTimes = {}
+  	@stationNorthLines = []
+    @stationSouthLines = []
+  	@stationNorthTimes = {}
+    @stationSouthTimes = {}
 
   	@wantedStation = Station.friendly.find(params[:id])
     @tip = Tip.new
@@ -20,17 +22,8 @@ class StationsController < ApplicationController
   	getLines(station, "south_routes")
 
   	# go through each route's schedule and find the station and its associated time
-  	@stationLines.each do |line|
-  		@stationTimes["#{line}"] = []
-      lineSchedule = BartApi.schedule("routesched", {route: line})
-  		lineSchedule["root"]["route"]["train"].each do |train|
-  			train["stop"].each do |stop|
-  				if stop["station"] == @wantedStation.abbreviation && stop["origTime"] != nil
-  					@stationTimes["#{line}"].push(stop["origTime"])
-  					break
-  				end
-  			end
-  		end
-  	end
+  	getStationTimes(@stationNorthLines, "north")
+    getStationTimes(@stationSouthLines, "south")
   end
+
 end
