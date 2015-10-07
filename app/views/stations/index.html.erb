@@ -1,8 +1,9 @@
 <div class="container">
 	<h1>smartbart.ly</h1>
-
 	<% @stations.each do |station| %>
-	<span class="glyphicon glyphicon-heart" aria-hidden="true" id="<%=station.id%>" onclick="alert('you clicked on <%= station.name %>, id: <%= station.id %>!')"></span>
+	<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
+		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+	</span>
 	<%= station.name %><br>
 	<% end %>
 

@@ -7,5 +7,8 @@ Rails.application.routes.draw do
 
   resources :stations, :users
 
+  post 'favorites/new/:id', to: 'favorites#create'
+
+
 end
   
