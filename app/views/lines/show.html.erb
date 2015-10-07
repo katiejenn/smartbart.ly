@@ -6,6 +6,16 @@ Stations:<br>
 	<% station = getStationName(stationAbbreviation) %>
 	<%= link_to station.name, station_path(station.slug) %><br>
 <% end %>
+<br>
+Timetables:<br>
+<% @lineTimes["root"]["route"]["train"].each do |train| %>
+	<% train["stop"].each do |station| %>
+		<% if station["origTime"] != nil %>
+			<%= getStationName(station["station"]).name %>: <%= station["origTime"]%><br>
+		<% end %>
+	<% end %>
+	<br>
+<% end %>
 
 <h3>User Tips</h3>
 <% if !@tips.empty? %>
