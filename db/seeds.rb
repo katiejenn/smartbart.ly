@@ -61,8 +61,8 @@ Station.destroy_all
 
 stationsAll.each{|x| Station.create(x)}
 
-routesAll = []
-routesAll.push(
+linesAll = []
+linesAll.push(
 	{name: "Pittsburg/Bay Point - SFIA/Millbrae", abbreviation: "PITT-SFIA", "number"=>"1", direction: "", color: "#ffff33", stations: ["PITT", "NCON", "CONC", "PHIL", "WCRK", "LAFY", "ORIN", "ROCK", "MCAR", "19TH", "12TH", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY", "COLM", "SSAN", "SBRN", "SFIA", "MLBR"]},
 	{name: "Millbrae/SFIA - Pittsburg/Bay Point", abbreviation: "SFIA-PITT", "number"=>"2", direction: "", color: "#ffff33", stations: ["MLBR", "SFIA", "SBRN", "SSAN", "COLM", "DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "12TH", "19TH", "MCAR", "ROCK", "ORIN", "LAFY", "WCRK", "PHIL", "CONC", "NCON", "PITT"]},
 	{name: "Fremont - Richmond", abbreviation: "FRMT-RICH", "number"=>"3", direction: "", color: "#ff9933", stations: ["FRMT", "UCTY", "SHAY", "HAYW", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "12TH", "19TH", "MCAR", "ASHB", "DBRK", "NBRK", "PLZA", "DELN", "RICH"]},
@@ -76,5 +76,8 @@ routesAll.push(
 	{name: "Coliseum - Oakland Int'l Airport", abbreviation: "COLS-OAKL", "number"=>"19", direction: "north", color: "#d5cfa3", stations: ["COLS", "OAKL"]},
 	{name: "Oakland Int'l Airport - Coliseum", abbreviation: "OAKL-COLS", "number"=>"20", direction: "south", color: "#d5cfa3", stations: ["OAKL", "COLS"]}
 	)
+
 routesAll.each{|x| Route.create(x)}
+
+linesAll.each{|x| Line.create(x)}
 
