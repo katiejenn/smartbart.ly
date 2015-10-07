@@ -8,6 +8,7 @@
 
 
 # Stations
+
 stationsAll = []
 stationsAll = stationsAll.push(
  {name: "12th St. Oakland City Center", address: "1245 Broadway, Oakland, CA 94612", latitude: 37.803664, longitude: -122.271604, abbreviation: "12TH"},
@@ -56,6 +57,9 @@ stationsAll = stationsAll.push(
  {name: "West Dublin/Pleasanton", address: "6501 Golden Gate Drive, Dublin, CA 94568", latitude: 37.699759, longitude: -121.928099, abbreviation: "WDUB"},
  {name: "West Oakland", address: "1451 7th Street, Oakland, CA 94607", latitude: 37.80467476, longitude: -122.2945822, abbreviation: "WOAK"},
  )
+
+Station.destroy_all
+
 stationsAll.each{|x| Station.create(x)}
 
 linesAll = []
@@ -73,4 +77,8 @@ linesAll.push(
 	{name: "Coliseum - Oakland Int'l Airport", abbreviation: "COLS-OAKL", "number"=>"19", color: "#d5cfa3", stations: ["COLS", "OAKL"]},
 	{name: "Oakland Int'l Airport - Coliseum", abbreviation: "OAKL-COLS", "number"=>"20", color: "#d5cfa3", stations: ["OAKL", "COLS"]}
 	)
+
+# routesAll.each{|x| Route.create(x)}
+
 linesAll.each{|x| Line.create(x)}
+
