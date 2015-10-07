@@ -42,7 +42,7 @@ stationsAll = stationsAll.push(
  {name: "Oakland Int'l Airport", address: "4 Airport Drive, Oakland, CA 94621", latitude: 37.71297174, longitude: -122.21244024, abbreviation: "OAKL"},
  {name: "Orinda", address: "11 Camino Pablo, Orinda, CA 94563", latitude: 37.87836087, longitude: -122.1837911, abbreviation: "ORIN"},
  {name: "Pittsburg/Bay Point", address: "1700 West Leland Road, Pittsburg, CA 94565", latitude: 38.018914, longitude: -121.945154, abbreviation: "PITT"},
- {name: "Pleasant Hill/Contra Costa Centre", address: "", latitude: nil, longitude: nil, abbreviation: "PHIL"},
+ {name: "Pleasant Hill/Contra Costa Centre", address: "1365 Treat Boulevard, Walnut Creek, CA 94597", latitude: 37.928403, longitude: -122.056013, abbreviation: "PHIL"},
  {name: "Powell St.", address: "899 Market Street, San Francisco, CA 94102", latitude: 37.784991, longitude: -122.406857, abbreviation: "POWL"},
  {name: "Richmond", address: "1700 Nevin Avenue, Richmond, CA 94801", latitude: 37.936887, longitude: -122.353165, abbreviation: "RICH"},
  {name: "Rockridge", address: "5660 College Avenue, Oakland, CA 94618", latitude: 37.844601, longitude: -122.251793, abbreviation: "ROCK"},
