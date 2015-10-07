@@ -1,25 +1,34 @@
 function clickHeart(station) 
 {
-	stationId = $(station).data()._id;
+	currentStation = $(station);
+	stationId = currentStation.data()._id;
 	//alert('clicked on ' + stationId + '!');
-	// if ($el.hasClass("hearted")) {
-	// 	deleteFavorite();
-	// } else {
-		//addFavorite(stationId);
-		deleteFavorite(stationId)
+	// if (currentStation.hasClass('hearted')) 
+	// {
+		deleteFavorite(currentStation);
+	// } 
+	// else 
+	// {
+		// addFavorite(currentStation);
 	// }
 }
-function addFavorite(stationId) 
+function addFavorite(station) 
 {
 	console.log("you are adding a new favorite station!");
+	currentStation = $(station);
+	stationId = currentStation.data()._id;
+	currentStation.css('class', 'hearted');
 	$.post("/favorites/new/" + stationId, function(){
 		alert("You just added station " + stationId + " to your favorites!");
 	});
 }
 
-function deleteFavorite(stationId) 
+function deleteFavorite(station) 
 {	
-	console.log(stationId, "station id")
+	console.log("You are deleting a favorite station!");
+	currentStation = $(station);
+	stationId = currentStation.data()._id;
+	currentStation.css('class', 'hearted');
 	var foo = "/favorites/"+stationId
 	console.log("foo: " + foo)
 	$.ajax({
