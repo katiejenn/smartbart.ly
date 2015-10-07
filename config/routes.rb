@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
 
-  get 'lines/index'
+	get 'lines/index'
 
-  get 'lines/show'
+	get 'lines/show'
 
- root 'stations#index'
+	root 'stations#index'
 
-  get '/sign_in', to:'sessions#new'
-  post "/sessions", to: "sessions#create"
-  get '/sign_out', to: 'sessions#destroy'
+	get '/sign_in', to:'sessions#new'
+	post "/sessions", to: "sessions#create"
+	get '/sign_out', to: 'sessions#destroy'
 
-  post '/tips', to: "tips#create"
+	post 'favorites/new/:id', to: 'favorites#create'
+	delete 'favorites/:id', to: 'favorites#destroy'
 
-  resources :stations, :users, :lines
+	post '/tips', to: "tips#create"
+
+	resources :stations, :users, :lines
+
 
 end
   
