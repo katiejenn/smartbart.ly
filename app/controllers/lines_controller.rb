@@ -4,6 +4,6 @@ class LinesController < ApplicationController
   end
 
   def show
-  	
+  	@line = Line.friendly.find(params[:id])
   end
 end

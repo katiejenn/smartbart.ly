@@ -1,2 +1,7 @@
-<h1>Lines#show</h1>
-<p>Find me in app/views/lines/show.html.erb</p>
+<h1><%= @line.name %></h1>
+Direction: <%= @line.direction %><br><br>
+Stations:<br>
+<% @line.stations.each do |stationAbbreviation| %>
+	<% station = getStationName(stationAbbreviation) %>
+	<%= link_to station.name, station_path(station.slug) %><br>
+<% end %>
