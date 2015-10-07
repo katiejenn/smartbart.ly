@@ -16,28 +16,25 @@ function addFavorite(station) {
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	currentStation.addClass('hearted');
+
 	$.post("/favorites/new/" + stationId, function(){
 		alert("You just added station " + stationId + " to your favorites!");
 	});
 }
 
 function deleteFavorite(station) {	
-	console.log("You are deleting a favorite station!");
+	console.log("you are deleting a favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	currentStation.removeClass('hearted');
-	var foo = "/favorites/"+stationId
-	console.log("foo: " + foo)
+	
+	var path = "/favorites/"+ stationId;
 	$.ajax({
-		url: foo,//"/favorites/"+ stationId,
+		url: path,
 		type: 'DELETE',
 		success: function(res){
 			alert("You just deleted station " + stationId + " from your favorites!");
 		}
-		// ,
-		// error: function(res){
-			
-		// }
 	});
 }
 
