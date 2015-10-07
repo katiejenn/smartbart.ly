@@ -2,8 +2,8 @@ class StationsController < ApplicationController
 
   def index
   	@stations = Station.all
-    if @currentuser
-      @user = current_user
+    # if @currentuser
+    #   @user = current_user
   end
 
   def show

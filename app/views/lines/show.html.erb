@@ -1,6 +1,9 @@
 <h1><%= @line.name %></h1>
 Origin: <%= getStationName(@line.stations.first).name %><br>
-Destination: <%= getStationName(@line.stations.last).name %><br><br>
+Destination: <%= getStationName(@line.stations.last).name %><br>
+<div class="line-color" style="background-color: <%= @line.color %>;">
+	Line Color: <br>
+</div>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
 	<% station = getStationName(stationAbbreviation) %>
@@ -9,9 +12,10 @@ Stations:<br>
 <br>
 Timetables:<br>
 <% @lineTimes["root"]["route"]["train"].each do |train| %>
-	<% train["stop"].each do |station| %>
-		<% if station["origTime"] != nil %>
-			<%= getStationName(station["station"]).name %>: <%= station["origTime"]%><br>
+	<% train["stop"].each do |stationAbbreviation| %>
+		<% station = getStationName(stationAbbreviation["station"]) %>
+		<% if stationAbbreviation["origTime"] != nil %>
+			<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
 		<% end %>
 	<% end %>
 	<br>
@@ -30,7 +34,7 @@ Timetables:<br>
 	<%= form_for(@tip, url: tips_path) do |f| %>
 		<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
 		<%= f.hidden_field :user_id, value: @current_user.id %>
-		<%= f.hidden_field :line_id, value: @line.id %>
+		<%= f.hidden_field :line_id, value: @line.number %>
 		<%= f.submit "Share", class: "btn-submit" %>
 	<% end %>
 <% end %>
