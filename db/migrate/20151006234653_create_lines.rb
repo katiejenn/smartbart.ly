@@ -4,7 +4,6 @@ class CreateLines < ActiveRecord::Migration
       t.string :name
       t.string :number
       t.string :abbreviation
-      t.string :direction
       t.string :color
       t.text :stations
       t.string :slug

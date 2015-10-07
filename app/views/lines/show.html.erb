@@ -1,11 +1,20 @@
 <h1><%= @line.name %></h1>
-Direction: <%= @line.direction %><br><br>
 Origin: <%= getStationName(@line.stations.first).name %><br>
 Destination: <%= getStationName(@line.stations.last).name %><br><br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
 	<% station = getStationName(stationAbbreviation) %>
 	<%= link_to station.name, station_path(station.slug) %><br>
+<% end %>
+<br>
+Timetables:<br>
+<% @lineTimes["root"]["route"]["train"].each do |train| %>
+	<% train["stop"].each do |station| %>
+		<% if station["origTime"] != nil %>
+			<%= getStationName(station["station"]).name %>: <%= station["origTime"]%><br>
+		<% end %>
+	<% end %>
+	<br>
 <% end %>
 
 <h3>User Tips</h3>

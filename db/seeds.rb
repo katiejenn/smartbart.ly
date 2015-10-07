@@ -43,7 +43,7 @@ stationsAll = stationsAll.push(
  {name: "Oakland Int'l Airport", address: "4 Airport Drive, Oakland, CA 94621", latitude: 37.71297174, longitude: -122.21244024, abbreviation: "OAKL"},
  {name: "Orinda", address: "11 Camino Pablo, Orinda, CA 94563", latitude: 37.87836087, longitude: -122.1837911, abbreviation: "ORIN"},
  {name: "Pittsburg/Bay Point", address: "1700 West Leland Road, Pittsburg, CA 94565", latitude: 38.018914, longitude: -121.945154, abbreviation: "PITT"},
- {name: "Pleasant Hill/Contra Costa Centre", address: "", latitude: nil, longitude: nil, abbreviation: "PHIL"},
+ {name: "Pleasant Hill/Contra Costa Centre", address: "1365 Treat Boulevard, Walnut Creek, CA 94597", latitude: 37.928403, longitude: -122.056013, abbreviation: "PHIL"},
  {name: "Powell St.", address: "899 Market Street, San Francisco, CA 94102", latitude: 37.784991, longitude: -122.406857, abbreviation: "POWL"},
  {name: "Richmond", address: "1700 Nevin Avenue, Richmond, CA 94801", latitude: 37.936887, longitude: -122.353165, abbreviation: "RICH"},
  {name: "Rockridge", address: "5660 College Avenue, Oakland, CA 94618", latitude: 37.844601, longitude: -122.251793, abbreviation: "ROCK"},
@@ -64,18 +64,18 @@ stationsAll.each{|x| Station.create(x)}
 
 linesAll = []
 linesAll.push(
-	{name: "Pittsburg/Bay Point - SFIA/Millbrae", abbreviation: "PITT-SFIA", "number"=>"1", direction: "south", color: "#ffff33", stations: ["PITT", "NCON", "CONC", "PHIL", "WCRK", "LAFY", "ORIN", "ROCK", "MCAR", "19TH", "12TH", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY", "COLM", "SSAN", "SBRN", "SFIA", "MLBR"]},
-	{name: "Millbrae/SFIA - Pittsburg/Bay Point", abbreviation: "SFIA-PITT", "number"=>"2", direction: "north", color: "#ffff33", stations: ["MLBR", "SFIA", "SBRN", "SSAN", "COLM", "DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "12TH", "19TH", "MCAR", "ROCK", "ORIN", "LAFY", "WCRK", "PHIL", "CONC", "NCON", "PITT"]},
-	{name: "Fremont - Richmond", abbreviation: "FRMT-RICH", "number"=>"3", direction: "north", color: "#ff9933", stations: ["FRMT", "UCTY", "SHAY", "HAYW", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "12TH", "19TH", "MCAR", "ASHB", "DBRK", "NBRK", "PLZA", "DELN", "RICH"]},
-	{name: "Richmond - Fremont", abbreviation: "RICH-FRMT", "number"=>"4", direction: "south", color: "#ff9933", stations: ["RICH", "DELN", "PLZA", "NBRK", "DBRK", "ASHB", "MCAR", "19TH", "12TH", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "HAYW", "SHAY", "UCTY", "FRMT"]},
-	{name: "Fremont - Daly City", abbreviation: "FRMT-DALY", "number"=>"5", direction: "north", color: "#339933", stations: ["FRMT", "UCTY", "SHAY", "HAYW", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY"]},
-	{name: "Daly City - Fremont", abbreviation: "daly-frmt", "number"=>"6", direction: "south", color: "#339933", stations: ["DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "HAYW", "SHAY", "UCTY", "FRMT"]},
-	{name: "Richmond - Daly City/Millbrae", abbreviation: "RICH-MLBR", "number"=>"7", direction: "south", color: "#ff0000", stations: ["RICH", "DELN", "PLZA", "NBRK", "DBRK", "ASHB", "MCAR", "19TH", "12TH", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY", "COLM", "SSAN", "SBRN", "MLBR"]},
-	{name: "Millbrae/Daly City - Richmond", abbreviation: "MLBR-RICH", "number"=>"8", direction: "north", color: "#ff0000", stations: ["MLBR", "SBRN", "SSAN", "COLM", "DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "12TH", "19TH", "MCAR", "ASHB", "DBRK", "NBRK", "PLZA", "DELN", "RICH"]},
-	{name: "Dublin/Pleasanton - Daly City", abbreviation: "DUBL-DALY", "number"=>"11", direction: "south", color: "#0099cc", stations: ["DUBL", "WDUB", "CAST", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY"]},
-	{name: "Daly City - Dublin/Pleasanton", abbreviation: "DALY-DUBL", "number"=>"12", direction: "north", color: "#0099cc", stations: ["DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "CAST", "WDUB", "DUBL"]},
-	{name: "Coliseum - Oakland Int'l Airport", abbreviation: "COLS-OAKL", "number"=>"19", direction: "north", color: "#d5cfa3", stations: ["COLS", "OAKL"]},
-	{name: "Oakland Int'l Airport - Coliseum", abbreviation: "OAKL-COLS", "number"=>"20", direction: "south", color: "#d5cfa3", stations: ["OAKL", "COLS"]}
+	{name: "Pittsburg/Bay Point - SFIA/Millbrae", abbreviation: "PITT-SFIA", "number"=>"1", color: "#ffff33", stations: ["PITT", "NCON", "CONC", "PHIL", "WCRK", "LAFY", "ORIN", "ROCK", "MCAR", "19TH", "12TH", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY", "COLM", "SSAN", "SBRN", "SFIA", "MLBR"]},
+	{name: "Millbrae/SFIA - Pittsburg/Bay Point", abbreviation: "SFIA-PITT", "number"=>"2", color: "#ffff33", stations: ["MLBR", "SFIA", "SBRN", "SSAN", "COLM", "DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "12TH", "19TH", "MCAR", "ROCK", "ORIN", "LAFY", "WCRK", "PHIL", "CONC", "NCON", "PITT"]},
+	{name: "Fremont - Richmond", abbreviation: "FRMT-RICH", "number"=>"3", color: "#ff9933", stations: ["FRMT", "UCTY", "SHAY", "HAYW", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "12TH", "19TH", "MCAR", "ASHB", "DBRK", "NBRK", "PLZA", "DELN", "RICH"]},
+	{name: "Richmond - Fremont", abbreviation: "RICH-FRMT", "number"=>"4", color: "#ff9933", stations: ["RICH", "DELN", "PLZA", "NBRK", "DBRK", "ASHB", "MCAR", "19TH", "12TH", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "HAYW", "SHAY", "UCTY", "FRMT"]},
+	{name: "Fremont - Daly City", abbreviation: "FRMT-DALY", "number"=>"5", color: "#339933", stations: ["FRMT", "UCTY", "SHAY", "HAYW", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY"]},
+	{name: "Daly City - Fremont", abbreviation: "daly-frmt", "number"=>"6", color: "#339933", stations: ["DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "HAYW", "SHAY", "UCTY", "FRMT"]},
+	{name: "Richmond - Daly City/Millbrae", abbreviation: "RICH-MLBR", "number"=>"7", color: "#ff0000", stations: ["RICH", "DELN", "PLZA", "NBRK", "DBRK", "ASHB", "MCAR", "19TH", "12TH", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY", "COLM", "SSAN", "SBRN", "MLBR"]},
+	{name: "Millbrae/Daly City - Richmond", abbreviation: "MLBR-RICH", "number"=>"8", color: "#ff0000", stations: ["MLBR", "SBRN", "SSAN", "COLM", "DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "12TH", "19TH", "MCAR", "ASHB", "DBRK", "NBRK", "PLZA", "DELN", "RICH"]},
+	{name: "Dublin/Pleasanton - Daly City", abbreviation: "DUBL-DALY", "number"=>"11", color: "#0099cc", stations: ["DUBL", "WDUB", "CAST", "BAYF", "SANL", "COLS", "FTVL", "LAKE", "WOAK", "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN", "BALB", "DALY"]},
+	{name: "Daly City - Dublin/Pleasanton", abbreviation: "DALY-DUBL", "number"=>"12", color: "#0099cc", stations: ["DALY", "BALB", "GLEN", "24TH", "16TH", "CIVC", "POWL", "MONT", "EMBR", "WOAK", "LAKE", "FTVL", "COLS", "SANL", "BAYF", "CAST", "WDUB", "DUBL"]},
+	{name: "Coliseum - Oakland Int'l Airport", abbreviation: "COLS-OAKL", "number"=>"19", color: "#d5cfa3", stations: ["COLS", "OAKL"]},
+	{name: "Oakland Int'l Airport - Coliseum", abbreviation: "OAKL-COLS", "number"=>"20", color: "#d5cfa3", stations: ["OAKL", "COLS"]}
 	)
 
 # routesAll.each{|x| Route.create(x)}

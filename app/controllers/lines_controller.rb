@@ -5,6 +5,7 @@ class LinesController < ApplicationController
 
   def show
   	@line = Line.friendly.find(params[:id])
+  	@lineTimes = BartApi.schedule("routesched", {route: @line.id})
 
   	@tip = Tip.new
     @tips = Tip.where(line_id: @line.id).order(:created_at).reverse

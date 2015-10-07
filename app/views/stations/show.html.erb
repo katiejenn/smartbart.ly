@@ -1,7 +1,17 @@
 <h1><%= @wantedStation.name %></h1>
-<% @stationTimes.each do |lineNumber, line| %>
+<h2>Northbound</h2>
+<% @stationNorthTimes.each do |lineNumber, line| %>
 	<% @wantedLine = getLineName(lineNumber) %>
-	<h2><%= @wantedLine.name %></h2>
+	<h3><%= @wantedLine.name %></h3>
+	<% line.each do |arrival_time| %>
+		<%= arrival_time %>
+	<% end %>
+	<br>
+<% end %>
+<h2>Southbound</h2>
+<% @stationSouthTimes.each do |lineNumber, line| %>
+	<% @wantedLine = getLineName(lineNumber) %>
+	<h3><%= @wantedLine.name %></h3>
 	<% line.each do |arrival_time| %>
 		<%= arrival_time %>
 	<% end %>
