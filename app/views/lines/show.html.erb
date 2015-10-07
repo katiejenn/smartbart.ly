@@ -2,8 +2,9 @@
 Origin: <%= getStationName(@line.stations.first).name %><br>
 Destination: <%= getStationName(@line.stations.last).name %><br>
 <div class="line-color" style="background-color: <%= @line.color %>;">
-	Line Color: <br>
+	Line Color:
 </div>
+<br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
 	<% station = getStationName(stationAbbreviation) %>
