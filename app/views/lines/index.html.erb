@@ -1,0 +1,4 @@
+<h1>BART Lines</h1>
+<% @all_lines.each do |line| %>
+	<%= link_to line.name, line_path(line.slug) %><br>
+<% end %>
