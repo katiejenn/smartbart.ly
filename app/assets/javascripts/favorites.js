@@ -2,7 +2,7 @@ function clickHeart(station) {
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	// alert('clicked on ' + stationId + '!');
-	if (currentStation.hasClass('hearted')) 
+	if (currentStation.toggleClass('hearted')) 
 	{
 		deleteFavorite(currentStation);
 	} 
@@ -26,8 +26,8 @@ function deleteFavorite(station) {
 	console.log("you are deleting a favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
-	currentStation.removeClass('hearted');
-	
+	currentStation.toggleClass('hearted');
+
 	var path = "/favorites/"+ stationId;
 	$.ajax({
 		url: path,
