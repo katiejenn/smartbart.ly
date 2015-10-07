@@ -2,10 +2,10 @@
 	<h1>smartbart.ly</h1>
 
 	<% @stations.each do |station| %>
-	<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
-		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-	</span>
-	<%= link_to station.name, station_path(station.slug) %><br>
+		<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
+			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		</span>
+		<%= link_to station.name, station_path(station.slug) %><br>
 	<% end %>
 
 </div>
