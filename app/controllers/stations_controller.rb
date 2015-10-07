@@ -5,13 +5,12 @@ class StationsController < ApplicationController
   end
 
   def show
-  	@tip = Tip.new
-    @tips = Tip.where(station_id: params[:id]).order(:created_at).reverse
-
   	@stationLines = []
   	@stationTimes = {}
 
   	@wantedStation = Station.friendly.find(params[:id])
+    @tip = Tip.new
+    @tips = Tip.where(station_id: @wantedStation.id).order(:created_at).reverse
 
   	# get the specified station's info, can replace mlbr with info from the params later on
     station = BartApi.station("stninfo", {orig: @wantedStation.abbreviation})

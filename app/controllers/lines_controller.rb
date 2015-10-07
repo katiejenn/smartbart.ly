@@ -4,9 +4,9 @@ class LinesController < ApplicationController
   end
 
   def show
-  	@tip = Tip.new
-    @tips = Tip.where(line_id: params[:id]).order(:created_at).reverse
-
   	@line = Line.friendly.find(params[:id])
+
+  	@tip = Tip.new
+    @tips = Tip.where(line_id: @line.id).order(:created_at).reverse
   end
 end
