@@ -1,16 +1,16 @@
 module StationsHelper
 
-	def getRoutes(station, routeDirection)
-		if station["root"]["stations"]["station"][routeDirection] != nil
-			station["root"]["stations"]["station"][routeDirection]["route"].each do |route|
-				@stationRoutes.push(route[/\d/])
+	def getLines(station, lineDirection)
+		if station["root"]["stations"]["station"][lineDirection] != nil
+			station["root"]["stations"]["station"][lineDirection]["route"].each do |line|
+				@stationLines.push(line[/\d/])
 			end
 		end
 	end
 
-	def getRouteName(routeNumber)
-		if routeNumber != nil
-			Route.find_by_number(routeNumber)
+	def getLineName(lineNumber)
+		if lineNumber != nil
+			Line.find_by_number(lineNumber)
 		end
 	end
 

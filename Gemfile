@@ -45,6 +45,12 @@ group :development, :test do
   # Use 'rspec-rails' for testing
   gem 'rspec-rails', '~> 3.0'
 
+  # Use 'shoulda-matchers' for more easily understood phrases
+  gem 'shoulda-matchers', require: false
+
+  # Use 'factory girl' for more testing
+  gem 'factory_girl_rails'
+
   # Use pry for easier legibility in the console
   gem 'pry-rails'
 end
@@ -52,6 +58,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  # Use 'rspec-rails' for testing
+  gem 'rspec-rails', '~> 3.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
