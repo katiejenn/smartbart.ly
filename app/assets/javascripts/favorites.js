@@ -1,5 +1,4 @@
-function clickHeart(station) 
-{
+function clickHeart(station) {
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	// alert('clicked on ' + stationId + '!');
@@ -12,8 +11,7 @@ function clickHeart(station)
 		addFavorite(currentStation);
 	}
 }
-function addFavorite(station) 
-{
+function addFavorite(station) {
 	console.log("you are adding a new favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
@@ -23,8 +21,7 @@ function addFavorite(station)
 	});
 }
 
-function deleteFavorite(station) 
-{	
+function deleteFavorite(station) {	
 	console.log("You are deleting a favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
