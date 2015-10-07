@@ -1,4 +1,5 @@
 module StationsHelper
+	include ApplicationHelper
 
 	def getLines(station, lineDirection)
 		if station["root"]["stations"]["station"][lineDirection] != nil
@@ -26,14 +27,22 @@ module StationsHelper
 		end
 	end
 
-	def getStationTimes(station)
+	def getStationTimes(station, direction)
 		station.each do |line|
-			@stationTimes["#{line}"] = []
+			if direction == "north"
+				@stationNorthTimes["#{line}"] = []
+			elsif direction == "south"
+				@stationSouthTimes["#{line}"] = []
+			end
 	    	lineSchedule = BartApi.schedule("routesched", {route: line})
 			lineSchedule["root"]["route"]["train"].each do |train|
 				train["stop"].each do |stop|
 					if stop["station"] == @wantedStation.abbreviation && stop["origTime"] != nil
-						@stationTimes["#{line}"].push(stop["origTime"])
+						if direction == "north"
+							@stationNorthTimes["#{line}"].push(stop["origTime"])
+						elsif direction == "south"
+							@stationSouthTimes["#{line}"].push(stop["origTime"])
+						end
 						break
 					end
 				end

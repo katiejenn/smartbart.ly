@@ -7,7 +7,8 @@ class StationsController < ApplicationController
   def show
   	@stationNorthLines = []
     @stationSouthLines = []
-  	@stationTimes = {}
+  	@stationNorthTimes = {}
+    @stationSouthTimes = {}
 
   	@wantedStation = Station.friendly.find(params[:id])
     @tip = Tip.new
@@ -21,8 +22,8 @@ class StationsController < ApplicationController
   	getLines(station, "south_routes")
 
   	# go through each route's schedule and find the station and its associated time
-  	getStationTimes(@stationNorthLines)
-    getStationTimes(@stationSouthLines)
+  	getStationTimes(@stationNorthLines, "north")
+    getStationTimes(@stationSouthLines, "south")
   end
 
 end
