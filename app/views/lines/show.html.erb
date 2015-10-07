@@ -1,0 +1,36 @@
+<h1><%= @line.name %></h1>
+Origin: <%= getStationName(@line.stations.first).name %><br>
+Destination: <%= getStationName(@line.stations.last).name %><br><br>
+Stations:<br>
+<% @line.stations.each do |stationAbbreviation| %>
+	<% station = getStationName(stationAbbreviation) %>
+	<%= link_to station.name, station_path(station.slug) %><br>
+<% end %>
+<br>
+Timetables:<br>
+<% @lineTimes["root"]["route"]["train"].each do |train| %>
+	<% train["stop"].each do |station| %>
+		<% if station["origTime"] != nil %>
+			<%= getStationName(station["station"]).name %>: <%= station["origTime"]%><br>
+		<% end %>
+	<% end %>
+	<br>
+<% end %>
+
+<h3>User Tips</h3>
+<% if !@tips.empty? %>
+	<% @tips.each do |tip| %>
+		<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
+	<% end %>
+<% else %>
+	<p>There are no tips for this line yet.</p>
+<% end %>
+
+<% if @current_user %>
+	<%= form_for(@tip, url: tips_path) do |f| %>
+		<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
+		<%= f.hidden_field :user_id, value: @current_user.id %>
+		<%= f.hidden_field :line_id, value: @line.id %>
+		<%= f.submit "Share", class: "btn-submit" %>
+	<% end %>
+<% end %>
