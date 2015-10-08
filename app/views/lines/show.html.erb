@@ -66,3 +66,7 @@ Timetables:<br>
 		<%= f.submit "Share", class: "btn-submit" %>
 	<% end %>
 <% end %>
+
+<script type="text/javascript">
+	initFB('<%= @current_user.first_name + @current_user.last_name %>')
+</script>
