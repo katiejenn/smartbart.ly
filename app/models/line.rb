@@ -4,6 +4,8 @@ class Line < ActiveRecord::Base
 
 	serialize :stations,Array
 
-	has_many :line_times
-	has_many :orig_times, :through => :line_times
+	# has_many :line_times
+	# has_many :orig_times, :through => :line_times
+
+	has_many :orig_times
 end

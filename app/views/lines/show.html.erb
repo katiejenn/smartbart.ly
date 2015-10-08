@@ -1,6 +1,9 @@
 <h1><%= @line.name %></h1>
-Origin: <%= getStationName(@line.stations.first).name %><br>
-Destination: <%= getStationName(@line.stations.last).name %><br><br>
+<div class="line-color" style="background-color: <%= @line.color %>;">
+	Line Color:
+</div>
+Origin: <%= getStationByAbbreviation(@line.stations.first).name %><br>
+Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 
 <div class="example-chat l-demo-container">
 	  <header>Current Messages:</header>
@@ -13,26 +16,37 @@ Destination: <%= getStationName(@line.stations.last).name %><br><br>
 </div><br>
 
 <br>
-<div class="line-color" style="background-color: <%= @line.color %>;">
-	Line Color:
-</div>
 <br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
-	<% station = getStationName(stationAbbreviation) %>
+	<% station = getStationByAbbreviation(stationAbbreviation) %>
 	<%= link_to station.name, station_path(station.slug) %><br>
 <% end %>
 <br>
 Timetables:<br>
-<% @lineTimes["root"]["route"]["train"].each do |train| %>
-	Train #<%= train["index"] %><br>
-	<% train["stop"].each do |stationAbbreviation| %>
-		<% station = getStationName(stationAbbreviation["station"]) %>
-		<% if stationAbbreviation["origTime"] != nil && Time.parse(stationAbbreviation["origTime"]) > Time.now %>
-			<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
+<% if false %>
+	<% @lineTimes["root"]["route"]["train"].each do |train| %>
+		Train #<%= train["index"] %><br>
+		<% train["stop"].each do |stationAbbreviation| %>
+			<% station = getStationByAbbreviation(stationAbbreviation["station"]) %>
+			<% if stationAbbreviation["origTime"] != nil && Time.parse(stationAbbreviation["origTime"]) > Time.now %>
+				<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
+			<% end %>
 		<% end %>
+		<br>
 	<% end %>
-	<br>
+<% end %>
+
+<% trainIndex = nil %>
+<% @lineTimes.each do |train| %>
+	<% if train.value > Time.now %>
+		<% if trainIndex == nil || trainIndex != train.train_index%>
+			<% trainIndex = train.train_index %>
+			<br>Train #<%= trainIndex %><br>
+		<% end %>
+		<% station = getStationById(train.station_id) %>
+		<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %><br>
+	<% end %>
 <% end %>
 
 <h3>User Tips</h3>
@@ -52,3 +66,7 @@ Timetables:<br>
 		<%= f.submit "Share", class: "btn-submit" %>
 	<% end %>
 <% end %>
+
+<script type="text/javascript">
+	initFB('<%= @current_user.first_name + @current_user.last_name %>')
+</script>
