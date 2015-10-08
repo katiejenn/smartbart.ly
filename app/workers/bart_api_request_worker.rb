@@ -1,6 +1,5 @@
 class BartApiRequestWorker
 	
-	include Sidekiq::Worker
 	include ApplicationHelper
 	
 	def perform
