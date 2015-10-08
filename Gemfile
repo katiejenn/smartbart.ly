@@ -35,9 +35,24 @@ gem 'bcrypt', '~> 3.1.7'
 # Use HTTParty for API requests
 gem 'httparty'
 
+# Use Friendly_id for more user friendly urls
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # Call 'pry-byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry-byebug'
+
+  # Use 'rspec-rails' for testing
+  gem 'rspec-rails', '~> 3.0'
+
+  # Use 'shoulda-matchers' for more easily understood phrases
+  gem 'shoulda-matchers', require: false
+
+  # Use 'factory girl' for more testing
+  gem 'factory_girl_rails'
+
+  # Use pry for easier legibility in the console
+  gem 'pry-rails'
 end
 
 group :development do
@@ -48,3 +63,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  # Use the Rais 12 Factor gem for deployment to Heroku
+  gem  'rails_12factor'
+end

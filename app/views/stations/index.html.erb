@@ -1,5 +1,38 @@
-<h1>smartbart.ly</h1>
+<!-- <div class="container">
+	<h1>smartbart.ly</h1>
+	<#% @stations.each do |station| %>
+		<span data-_id="<#%=station.id%>" onclick="clickHeart(this)">
+			<span class="fa fa-heart" aria-hidden="true"></span>
+		</span>
+		<#%= link_to station.name, station_path(station.slug) %><br>
 
-<% @stations.each do |station| %>
-<%= station.name %><br>
-<% end %>
+		<#% @favorite_stations.each do |fs|%>
+			<#% if station == fs %>
+				
+			<#% end %>
+		<#% end %>
+	<#% end %>
+
+</div> -->
+
+<div class="container">
+	<h1>smartbart.ly</h1>
+	<% @stations.each do |station| %>
+	    <% tagged = false %>
+		<% @favorite_stations.each do |fs|%>
+			<% if station == fs %>
+				<span data-_id="<%=station.id%>" class="hearted" onclick="clickHeart(this)">
+					<span class="fa fa-heart" aria-hidden="true"></span>
+				</span>
+				<% tagged = true %>
+			<% end %>
+		<% end %>
+		<% unless tagged %>
+			<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
+					<span class="fa fa-heart" aria-hidden="true"></span>
+			</span>
+		<% end %>
+		<%= link_to station.name, station_path(station.slug) %><br>
+	<% end %>
+
+</div>
