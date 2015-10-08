@@ -9,7 +9,7 @@
 			<% trainIndex = arrival_time.train_index %>
 			<br>Train #<%= trainIndex %><br>
 		<% end %>
-		<%= arrival_time.value.getlocal.strftime("%I:%M %p") %>
+		<%= arrival_time.value.getlocal("-7:00").strftime("%I:%M %p") %>
 	<% end %>
 	<br>
 <% end %>
@@ -23,7 +23,7 @@
 			<% trainIndex = arrival_time.train_index %>
 			<br>Train #<%= trainIndex %><br>
 		<% end %>
-		<%= arrival_time.value.getlocal.strftime("%I:%M %p") %>
+		<%= arrival_time.value.getlocal("-7:00").strftime("%I:%M %p") %>
 	<% end %>
 	<br>
 <% end %>
