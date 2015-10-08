@@ -14,8 +14,3 @@
  *= require_self
  *= require bootstrap
  */
-
-#BARTmap {
-	max-width: 60%;
-	max-height: 60%;
-}
