@@ -14,7 +14,7 @@ function clickHeart(station)
 }
 function addFavorite(station) 
 {
-	console.log("you are adding a new favorite station!");
+	console.log("you are adding a new favorite station! changes changes changes");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	currentStation.toggleClass('hearted');
@@ -40,4 +40,11 @@ function deleteFavorite(station)
 		}
 	});
 }
+
+function addHeart(station)
+{
+	currentStation = $(station);
+	currentStation.addClass('hearted');
+}
+
 

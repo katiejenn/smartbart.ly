@@ -2,8 +2,10 @@ class StationsController < ApplicationController
 
   def index
   	@stations = Station.all
-    # if @currentuser
-    #   @user = current_user
+    if @current_user
+      @user = current_user
+      @favorite_stations = @user.stations 
+    end
   end
 
   def show
