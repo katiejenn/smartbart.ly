@@ -4,6 +4,7 @@ class CreateOrigTimes < ActiveRecord::Migration
       t.time :value
       t.integer :station_id
       t.integer :line_number
+      t.integer :train_index
 
       t.timestamps null: false
     end

@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20151007232911) do
     t.time     "value"
     t.integer  "station_id"
     t.integer  "line_number"
+    t.integer  "train_index"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
