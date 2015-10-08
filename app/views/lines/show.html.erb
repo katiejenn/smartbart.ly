@@ -1,6 +1,6 @@
 <h1><%= @line.name %></h1>
-Origin: <%= getStationNameByAbbreviation(@line.stations.first).name %><br>
-Destination: <%= getStationNameByAbbreviation(@line.stations.last).name %><br><br>
+Origin: <%= getStationByAbbreviation(@line.stations.first).name %><br>
+Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 
 <div class="example-chat l-demo-container">
 	  <header>Current Messages:</header>
@@ -19,7 +19,7 @@ Destination: <%= getStationNameByAbbreviation(@line.stations.last).name %><br><b
 <br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
-	<% station = getStationNameByAbbreviation(stationAbbreviation) %>
+	<% station = getStationByAbbreviation(stationAbbreviation) %>
 	<%= link_to station.name, station_path(station.slug) %><br>
 <% end %>
 <br>
@@ -28,7 +28,7 @@ Timetables:<br>
 	<% @lineTimes["root"]["route"]["train"].each do |train| %>
 		Train #<%= train["index"] %><br>
 		<% train["stop"].each do |stationAbbreviation| %>
-			<% station = getStationNameByAbbreviation(stationAbbreviation["station"]) %>
+			<% station = getStationByAbbreviation(stationAbbreviation["station"]) %>
 			<% if stationAbbreviation["origTime"] != nil && Time.parse(stationAbbreviation["origTime"]) > Time.now %>
 				<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
 			<% end %>
@@ -36,9 +36,15 @@ Timetables:<br>
 		<br>
 	<% end %>
 <% end %>
+
+<% trainIndex = nil %>
 <% @lineTimes.each do |train| %>
-	Train #<%= train.train_index %>
-	<% stationName = getStationNameById(train.station_id) %>: <%= Time.strftime("%I:%M% p") %>
+	<% if trainIndex == nil || trainIndex != train.train_index%>
+		<% trainIndex = train.train_index %>
+		<br>Train #<%= trainIndex %><br>
+	<% end %>
+	<% station = getStationById(train.station_id) %>
+	<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.strftime("%I:%M %p") %><br>
 <% end %>
 
 <h3>User Tips</h3>
