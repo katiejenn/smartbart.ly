@@ -4,7 +4,9 @@
 	<% @wantedLine = getLineName(lineNumber) %>
 	<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
 	<% line.each do |arrival_time| %>
-		<%= arrival_time %>
+		<% if Time.parse(arrival_time) > Time.now() %>
+			<%= arrival_time %>
+		<% end %>
 	<% end %>
 	<br>
 <% end %>
@@ -13,7 +15,9 @@
 	<% @wantedLine = getLineName(lineNumber) %>
 	<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
 	<% line.each do |arrival_time| %>
-		<%= arrival_time %>
+		<% if Time.parse(arrival_time) > Time.now() %>
+			<%= arrival_time %>
+		<% end %>
 	<% end %>
 	<br>
 <% end %>

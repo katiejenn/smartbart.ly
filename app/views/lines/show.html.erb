@@ -14,8 +14,9 @@ Destination: <%= getStationName(@line.stations.last).name %><br><br>
 
 <br>
 <div class="line-color" style="background-color: <%= @line.color %>;">
-	Line Color: <br>
+	Line Color:
 </div>
+<br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
 	<% station = getStationName(stationAbbreviation) %>
@@ -24,9 +25,10 @@ Stations:<br>
 <br>
 Timetables:<br>
 <% @lineTimes["root"]["route"]["train"].each do |train| %>
+	Train #<%= train["index"] %><br>
 	<% train["stop"].each do |stationAbbreviation| %>
 		<% station = getStationName(stationAbbreviation["station"]) %>
-		<% if stationAbbreviation["origTime"] != nil %>
+		<% if stationAbbreviation["origTime"] != nil && Time.parse(stationAbbreviation["origTime"]) > Time.now %>
 			<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
 		<% end %>
 	<% end %>
