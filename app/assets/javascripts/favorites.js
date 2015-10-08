@@ -1,8 +1,9 @@
-function clickHeart(station) {
+function clickHeart(station) 
+{
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	// alert('clicked on ' + stationId + '!');
-	if (currentStation.toggleClass('hearted')) 
+	if (currentStation.hasClass('hearted')) 
 	{
 		deleteFavorite(currentStation);
 	} 
@@ -11,18 +12,20 @@ function clickHeart(station) {
 		addFavorite(currentStation);
 	}
 }
-function addFavorite(station) {
-	console.log("you are adding a new favorite station!");
+function addFavorite(station) 
+{
+	console.log("you are adding a new favorite station! changes changes changes");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
-	currentStation.addClass('hearted');
+	currentStation.toggleClass('hearted');
 
 	$.post("/favorites/new/" + stationId, function(){
 		alert("You just added station " + stationId + " to your favorites!");
 	});
 }
 
-function deleteFavorite(station) {	
+function deleteFavorite(station) 
+{	
 	console.log("you are deleting a favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
@@ -37,4 +40,11 @@ function deleteFavorite(station) {
 		}
 	});
 }
+
+function addHeart(station)
+{
+	currentStation = $(station);
+	currentStation.addClass('hearted');
+}
+
 
