@@ -38,6 +38,9 @@ gem 'httparty'
 # Use Friendly_id for more user friendly urls
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
+# Use Sidekiq to automate API requests
+gem 'sidekiq'
+
 group :development, :test do
   # Call 'pry-byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'

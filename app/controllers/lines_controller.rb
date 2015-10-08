@@ -1,6 +1,6 @@
 class LinesController < ApplicationController
   def index
-  	@all_lines = Line.all
+  	@allLines = Line.all
   end
 
   def show
