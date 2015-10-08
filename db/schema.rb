@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007013311) do
+ActiveRecord::Schema.define(version: 20151007233344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20151007013311) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "line_times", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "line_id"
+    t.integer  "orig_time_id"
+  end
+
   create_table "lines", force: :cascade do |t|
     t.string   "name"
     t.string   "number"
@@ -45,6 +52,19 @@ ActiveRecord::Schema.define(version: 20151007013311) do
     t.string   "slug"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "orig_times", force: :cascade do |t|
+    t.time     "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "station_times", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "station_id"
+    t.integer  "orig_time_id"
   end
 
   create_table "stations", force: :cascade do |t|
