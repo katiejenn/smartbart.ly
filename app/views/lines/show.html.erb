@@ -1,4 +1,7 @@
 <h1><%= @line.name %></h1>
+<div class="line-color" style="background-color: <%= @line.color %>;">
+	Line Color:
+</div>
 Origin: <%= getStationByAbbreviation(@line.stations.first).name %><br>
 Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 
@@ -13,9 +16,6 @@ Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 </div><br>
 
 <br>
-<div class="line-color" style="background-color: <%= @line.color %>;">
-	Line Color:
-</div>
 <br>
 Stations:<br>
 <% @line.stations.each do |stationAbbreviation| %>
@@ -39,12 +39,14 @@ Timetables:<br>
 
 <% trainIndex = nil %>
 <% @lineTimes.each do |train| %>
-	<% if trainIndex == nil || trainIndex != train.train_index%>
-		<% trainIndex = train.train_index %>
-		<br>Train #<%= trainIndex %><br>
+	<% if train.value > Time.now %>
+		<% if trainIndex == nil || trainIndex != train.train_index%>
+			<% trainIndex = train.train_index %>
+			<br>Train #<%= trainIndex %><br>
+		<% end %>
+		<% station = getStationById(train.station_id) %>
+		<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal.strftime("%I:%M %p") %><br>
 	<% end %>
-	<% station = getStationById(train.station_id) %>
-	<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.strftime("%I:%M %p") %><br>
 <% end %>
 
 <h3>User Tips</h3>

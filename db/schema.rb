@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20151007232911) do
   end
 
   create_table "orig_times", force: :cascade do |t|
-    t.time     "value"
+    t.datetime "value"
     t.integer  "station_id"
     t.integer  "line_number"
     t.integer  "train_index"
