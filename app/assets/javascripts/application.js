@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//
+//= require messages
 //= require favorites
 //= require_tree .
-
