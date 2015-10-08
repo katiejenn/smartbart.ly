@@ -3,10 +3,17 @@
 	<b>Favorite Stations:</b>
 	<br>
 	<% @user.stations.each do |station| %>
-		<%= station.name %>
+		<%= link_to station.name, station_path(station.slug) %>
 		<br>
 	<% end %>
 	<br>
+	<b>Tips:</b>
+	<br>
+	<% @user.tips.each do |tip| %>
+		<%= tip.description %>
+		<br>
+	<% end %>
+	<br><br>
 	<%= link_to "Logout", "/sign_out" %>	
 </div>
 
