@@ -11,10 +11,13 @@ function clickHeart(station)
 	{
 		addFavorite(currentStation);
 	}
+	
+	
+	
 }
 function addFavorite(station) 
 {
-	console.log("you are adding a new favorite station! changes changes changes");
+	console.log("you are adding a new favorite station!");
 	currentStation = $(station);
 	stationId = currentStation.data()._id;
 	currentStation.toggleClass('hearted');

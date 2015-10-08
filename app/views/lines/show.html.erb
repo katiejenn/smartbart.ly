@@ -10,9 +10,11 @@ Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 
 	  <ul id='example-messages' class="example-chat-messages"></ul>
 
-	  <footer>
-	    <input type='text' id='messageInput'  placeholder="Hows your train?">
-	  </footer>
+	  	<% if signed_in? %>
+			<footer>
+				<input type='text' id='messageInput'  placeholder="Hows your train?">
+			</footer>
+		<% end %>
 </div><br>
 
 <br>
@@ -68,5 +70,7 @@ Timetables:<br>
 <% end %>
 
 <script type="text/javascript">
-	initFB('<%= @current_user.first_name + " " + @current_user.last_name %>')
+	<% if @current_user != nil %>	
+		initFB('<%= @current_user.first_name + " " + @current_user.last_name %>')
+	<% end %>
 </script>
