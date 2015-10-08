@@ -18,7 +18,7 @@ class StationsController < ApplicationController
     @tip = Tip.new
     @tips = Tip.where(station_id: @wantedStation.id).order(:created_at).reverse
 
-  	# get the specified station's info, can replace mlbr with info from the params later on
+  	# get the specified station's info
     station = BartApi.station("stninfo", {orig: @wantedStation.abbreviation})
 
   	# drill down to the routes we need and append them to the array of routes

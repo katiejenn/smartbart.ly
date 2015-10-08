@@ -34,19 +34,29 @@ module StationsHelper
 			elsif direction == "south"
 				@stationSouthTimes["#{line}"] = []
 			end
-	    	lineSchedule = BartApi.schedule("routesched", {route: line})
-			lineSchedule["root"]["route"]["train"].each do |train|
-				train["stop"].each do |stop|
-					if stop["station"] == @wantedStation.abbreviation && stop["origTime"] != nil
-						if direction == "north"
-							@stationNorthTimes["#{line}"].push(stop["origTime"])
-						elsif direction == "south"
-							@stationSouthTimes["#{line}"].push(stop["origTime"])
-						end
-						break
-					end
-				end
-			end
+			lineSchedule = OrigTime.where(station_id: @wantedStation.id, line_number: line).order(:train_index)
+			lineSchedule.each do |arrival|
+				if arrival.value > Time.now
+					if direction == "north"
+		 				@stationNorthTimes["#{line}"].push(arrival)
+		 			elsif direction == "south"
+		 				@stationSouthTimes["#{line}"].push(arrival)
+		 			end
+		 		end
+	 		end
+	  		#lineSchedule = BartApi.schedule("routesched", {route: line})
+			# lineSchedule["root"]["route"]["train"].each do |train|
+			# 	train["stop"].each do |stop|
+			# 		if stop["station"] == @wantedStation.abbreviation && stop["origTime"] != nil
+			# 			if direction == "north"
+			# 				@stationNorthTimes["#{line}"].push(stop["origTime"])
+			# 			elsif direction == "south"
+			# 				@stationSouthTimes["#{line}"].push(stop["origTime"])
+			# 			end
+			# 			break
+			# 		end
+			# 	end
+			# end
 		end
 	end
 
