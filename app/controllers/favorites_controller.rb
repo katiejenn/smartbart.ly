@@ -7,8 +7,9 @@ class FavoritesController < ApplicationController
 		if @user.save
 			render json: @station, status: :created
 		else
-			render status: 501
+			render status: 400
 		end
+	
 	end
 
 	def destroy
@@ -17,9 +18,9 @@ class FavoritesController < ApplicationController
 
 		@user.stations.destroy(@station)
 		if @user.save
-			render json: @station
+			render json: @station, status: 204
 		else
-			render status: 501
+			render  nothing: true, status: 501
 		end
 	end
 

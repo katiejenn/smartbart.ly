@@ -1,6 +1,75 @@
 <h1><%= @line.name %></h1>
 Origin: <%= getStationName(@line.stations.first).name %><br>
-Destination: <%= getStationName(@line.stations.last).name %><br>
+Destination: <%= getStationName(@line.stations.last).name %><br><br>
+
+<div class="example-chat l-demo-container">
+	  <header>Current Messages:</header>
+
+	 
+
+	  <ul id='example-messages' class="example-chat-messages"></ul>
+
+	  <footer>
+	    <input type='text' id='messageInput'  placeholder="Hows your train?">
+	  </footer>
+	</div>
+	<script>
+		var messagesRef = new Firebase("https://blistering-fire-5819.firebaseio.com/smartbartly");
+		 // REGISTER DOM ELEMENTS
+		  var messageField = $('#messageInput');
+		  var messageList = $('#example-messages');
+
+		  // LISTEN FOR KEYPRESS EVENT
+		  messageField.keypress(function (e) {
+		    if (e.keyCode == 13) {
+		      //FIELD VALUES
+		      var username = '<%= "#{@current_user.first_name} #{@current_user.last_name}" %>';
+		      var message = messageField.val();
+		      var time = Date.now();
+
+		      //SAVE DATA TO FIREBASE AND EMPTY FIELD
+		      messagesRef.push({user__name: username, text: message, time: time});
+		      messageField.val('');
+		    }
+		  });
+
+		  // Add a callback that is triggered for each chat message.
+		  messagesRef.limitToLast(10).on('child_added', function (snapshot) {
+		    //GET DATA
+		    var data = snapshot.val();
+		    var username = data.user__name || "anonymous";
+		    var message = data.text;
+		    var time = data.time;
+		    if (data.created_at){
+		    	time = Date.parse(data.created_at);
+		    }
+
+		    //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+		    var messageElement = $("<li>");
+		    var nameElement = $("<strong class='example-chat-username'></strong>")
+		    var timeElement = Math.floor((Date.now() - time)/60000);
+		    var timeUnits;
+
+		    if (timeElement <= 60){
+		    	timeUnits = " minutes ago- ";
+		    }else if (timeElement > 60 && timeElement < 1440){
+		    	timeElement = Math.round(timeElement/60);
+		    	timeUnits = " hours ago- ";
+		    }else {
+		    	timeElement = Math.round(timeElement/1440);
+		    	timeUnits = " days ago- ";}
+		    nameElement.text(username + ": ");
+		    messageElement.text(message).prepend(nameElement).prepend(timeElement + timeUnits);
+
+		    //ADD MESSAGE
+		    messageList.append(messageElement)
+
+		    //SCROLL TO BOTTOM OF MESSAGE LIST
+		    messageList[0].scrollTop = messageList[0].scrollHeight;
+		  });
+
+	</script>
+<br>
 <div class="line-color" style="background-color: <%= @line.color %>;">
 	Line Color:
 </div>
