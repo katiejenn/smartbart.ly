@@ -45,7 +45,7 @@ Timetables:<br>
 			<br>Train #<%= trainIndex %><br>
 		<% end %>
 		<% station = getStationById(train.station_id) %>
-		<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-7:00").strftime("%I:%M %p") %><br>
+		<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %><br>
 	<% end %>
 <% end %>
 
