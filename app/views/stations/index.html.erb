@@ -1,20 +1,3 @@
-<!-- <div class="container">
-	<h1>smartbart.ly</h1>
-	<#% @stations.each do |station| %>
-		<span data-_id="<#%=station.id%>" onclick="clickHeart(this)">
-			<span class="fa fa-heart" aria-hidden="true"></span>
-		</span>
-		<#%= link_to station.name, station_path(station.slug) %><br>
-
-		<#% @favorite_stations.each do |fs|%>
-			<#% if station == fs %>
-				
-			<#% end %>
-		<#% end %>
-	<#% end %>
-
-</div> -->
-
 <div class="container">
 	<h1>smartbart.ly</h1>
 	<% @stations.each do |station| %>
