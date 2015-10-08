@@ -20,7 +20,7 @@ function addFavorite(station)
 	currentStation.toggleClass('hearted');
 
 	$.post("/favorites/new/" + stationId, function(){
-		alert("You just added station " + stationId + " to your favorites!");
+		console.log("You just added station " + stationId + " to your favorites!");
 	});
 }
 
@@ -36,7 +36,7 @@ function deleteFavorite(station)
 		url: path,
 		type: 'DELETE',
 		success: function(res){
-			alert("You just deleted station " + stationId + " from your favorites!");
+			console.log("You just deleted station " + stationId + " from your favorites!");
 		}
 	});
 }
