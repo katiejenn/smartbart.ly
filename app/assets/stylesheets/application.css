@@ -11,11 +11,18 @@
  * file per style scope.
  *
  *= require bootstrap
+ *= stations.scss
  *= require_tree .
  *= require_self
+ *=
  */
 
 #BARTmap {
 	max-width: 60%;
 	max-height: 60%;
 }
+
+
+
+
+
