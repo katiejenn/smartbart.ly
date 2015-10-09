@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 	post 'favorites/new/:id', to: 'favorites#create'
 	delete 'favorites/:id', to: 'favorites#destroy'
 
+	get '/about_us', to: 'welcome#show'
 	post '/tips', to: "tips#create"
 
 	resources :stations, :users, :lines
