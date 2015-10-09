@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 	root 'stations#index'
 
 	get '/sign_in', to:'sessions#new'
+	get '/users/new', to:'sessions#new'
+
 	post "/sessions", to: "sessions#create"
 	get '/sign_out', to: 'sessions#destroy'
 
