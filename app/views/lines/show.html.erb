@@ -1,90 +1,93 @@
-<h1><%= @line.name %></h1>
-<div class="line-color" style="background-color: <%= @line.color %>;">
-	Line Color:
-</div>
-Origin: <%= getStationByAbbreviation(@line.stations.first).name %><br>
-Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
+<div class="container-fluid">
+	<h1><%= @line.name %></h1>
+	<div class="line-color" style="background-color: <%= @line.color %>;">
+		Line Color:
+	</div>
+	Origin: <%= getStationByAbbreviation(@line.stations.first).name %><br>
+	Destination: <%= getStationByAbbreviation(@line.stations.last).name %><br><br>
 
-<div class="example-chat l-demo-container">
-	  <header>Current Messages:</header>
+	<div class="example-chat l-demo-container">
+		  <header>Current Messages:</header>
 
-	  <ul id='example-messages' class="example-chat-messages"></ul>
+		  <ul id='example-messages' class="example-chat-messages"></ul>
 
-	  	<% if signed_in? %>
-			<footer>
-				<input type='text' id='messageInput'  placeholder="Hows your train?">
-			</footer>
-		<% end %>
-</div><br>
-
-<br>
-<br>
-Stations:<br>
-<% @line.stations.each do |stationAbbreviation| %>
-	<% station = getStationByAbbreviation(stationAbbreviation) %>
-	<%= link_to station.name, station_path(station.slug) %><br>
-<% end %>
-<br>
-Timetables:<br>
-<% trainIndex = nil %>
-<% timeCounter = 0 %>
-<% @lineTimes.each do |train| %>
-	<% if train.value > Time.now %>
-		<% timeCounter += 1 %>
-		<% if trainIndex == nil || trainIndex != train.train_index%>
-			<% trainIndex = train.train_index %>
-			<% timeCounter = 0 %>
-			<% if trainIndex != nil %>
-							</tbody>
-						</table>
-					</div>
-				</div>				
+		  	<% if signed_in? %>
+				<footer>
+					<input type='text' id='messageInput'  placeholder="Hows your train?">
+				</footer>
 			<% end %>
-			<br>Train #<%= trainIndex %><br>
-			<table class="table table-hover">
-		<% elsif trainIndex == train.train_index && timeCounter == 4 %>
-			</table>
-			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#<%= trainIndex %>Times" aria-expanded="false" aria-controls="<%= trainIndex %>Times">
-			  See More Times
-			</button>
-			<div class="collapse" id="<%= trainIndex %>Times">
-			  <div class="well">
-			  	<table class="table table-hover">
-			  		<tbody>
-			  			<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-		<% elsif trainIndex == train.train_index && timeCounter > 4 %>
-			<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-		<% else %>
-			<% station = getStationById(train.station_id) %>
-				<tbody>
-					<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-				</tbody>
+	</div><br>
+
+	<br>
+	<br>
+	Stations:<br>
+	<% @line.stations.each do |stationAbbreviation| %>
+		<% station = getStationByAbbreviation(stationAbbreviation) %>
+		<%= link_to station.name, station_path(station.slug) %><br>
+	<% end %>
+	<br>
+	Timetables:<br>
+	<% trainIndex = nil %>
+	<% timeCounter = 0 %>
+	<% @lineTimes.each do |train| %>
+		<% if train.value > Time.now %>
+			<% timeCounter += 1 %>
+			<% if trainIndex == nil || trainIndex != train.train_index%>
+				<% trainIndex = train.train_index %>
+				<% timeCounter = 0 %>
+				<% if trainIndex != nil %>
+								</tbody>
+							</table>
+						</div>
+					</div>				
+				<% end %>
+				<br>Train #<%= trainIndex %><br>
+				<table class="table table-hover">
+			<% elsif trainIndex == train.train_index && timeCounter == 4 %>
+				</table>
+				<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#<%= trainIndex %>Times" aria-expanded="false" aria-controls="<%= trainIndex %>Times">
+				  See More Times
+				</button>
+				<br><br>
+				<div class="collapse" id="<%= trainIndex %>Times">
+				  <div class="well">
+				  	<table class="table table-hover">
+				  		<tbody>
+				  			<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+			<% elsif trainIndex == train.train_index && timeCounter > 4 %>
+				<tr><td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td></tr>
+			<% else %>
+				<% station = getStationById(train.station_id) %>
+					<tbody>
+						<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+					</tbody>
+			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
 
 
 
-<h3>User Tips</h3>
-<% if !@tips.empty? %>
-	<% @tips.each do |tip| %>
-		<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
+	<h3>User Tips</h3>
+	<% if !@tips.empty? %>
+		<% @tips.each do |tip| %>
+			<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
+		<% end %>
+	<% else %>
+		<p>There are no tips for this line yet.</p>
 	<% end %>
-<% else %>
-	<p>There are no tips for this line yet.</p>
-<% end %>
 
-<% if @current_user %>
-	<%= form_for(@tip, url: tips_path) do |f| %>
-		<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
-		<%= f.hidden_field :user_id, value: @current_user.id %>
-		<%= f.hidden_field :line_id, value: @line.number %>
-		<%= f.submit "Share", class: "btn-submit" %>
+	<% if @current_user %>
+		<%= form_for(@tip, url: tips_path) do |f| %>
+			<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
+			<%= f.hidden_field :user_id, value: @current_user.id %>
+			<%= f.hidden_field :line_id, value: @line.number %>
+			<%= f.submit "Share", class: "btn-submit" %>
+		<% end %>
 	<% end %>
-<% end %>
 
-<script type="text/javascript">
-	<% if @current_user != nil %>
-		initFB('<%= @current_user.first_name + @current_user.last_name %>')
-	<% end %>
-</script>
+	<script type="text/javascript">
+		<% if @current_user != nil %>
+			initFB('<%= @current_user.first_name + @current_user.last_name %>')
+		<% end %>
+	</script>
+</div>

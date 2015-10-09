@@ -1,29 +1,33 @@
 <h1><%= @wantedStation.name %></h1>
-<h2>Northbound</h2>
-<% @stationNorthTimes.each do |lineNumber, line| %>
-	<% @wantedLine = getLineName(lineNumber) %>
-	<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
-	<table class="table table-hover">
-		<% line.each do |arrival_time| %>
-			<tbody>
-				<td><%= arrival_time.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-			</tbody>
-		<% end %>
-	</table>
-	<br>
+<% if !@stationNorthTimes.empty? %>
+	<h2>Northbound</h2>
+	<% @stationNorthTimes.each do |lineNumber, line| %>
+		<% @wantedLine = getLineName(lineNumber) %>
+		<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
+		<table class="table table-hover">
+			<% line.each do |arrival_time| %>
+				<tbody>
+					<td><%= arrival_time.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+				</tbody>
+			<% end %>
+		</table>
+		<br>
+	<% end %>
 <% end %>
-<h2>Southbound</h2>
-<% @stationSouthTimes.each do |lineNumber, line| %>
-	<% @wantedLine = getLineName(lineNumber) %>
-	<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
-	<table class="table table-hover">
-		<% line.each do |arrival_time| %>
-			<tbody>
-				<td><%= arrival_time.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-			</tbody>
-		<% end %>
-	</table>
-	<br>
+<% if !@stationSouthTimes.empty? %>
+	<h2>Southbound</h2>
+	<% @stationSouthTimes.each do |lineNumber, line| %>
+		<% @wantedLine = getLineName(lineNumber) %>
+		<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
+		<table class="table table-hover">
+			<% line.each do |arrival_time| %>
+				<tbody>
+					<td><%= arrival_time.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+				</tbody>
+			<% end %>
+		</table>
+		<br>
+	<% end %>
 <% end %>
 
 <h3>User Tips</h3>
