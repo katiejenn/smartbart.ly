@@ -11,7 +11,7 @@
 					<% @favorite_stations.each do |fs|%>
 						<% if station == fs %>
 							<span data-_id="<%=station.id%>" class="hearted" onclick="clickHeart(this)">
-								<span class="fa fa-heart" aria-hidden="true"></span>
+								<span class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Unfavorite this station so you can favorite another!"></span>
 							</span>
 							<% tagged = true %>
 						<% end %>
@@ -20,12 +20,12 @@
 				<%if signed_in? %>
 					<% if tagged == false %>
 						<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
-								<span class="fa fa-heart" aria-hidden="true"></span>
+								<span class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Favorite this station for easy access!"></span>
 						</span>
 					<% end %>
 				<% else %>
 					<span data-_id="<%=station.id%>">
-						<span class="fa fa-heart" aria-hidden="true"></span>
+						<span class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Login to Favorite this station!"></span>
 					</span>
 				<% end %>
 				<%= link_to station.name, station_path(station.slug) %><br>
