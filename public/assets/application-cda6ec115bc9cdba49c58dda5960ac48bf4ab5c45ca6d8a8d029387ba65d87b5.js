@@ -13219,14 +13219,6 @@ return jQuery;
 
 
 function initFB(username, currentline) {
-	if (username.first_name !== undefined && username.last_name !== undefined)
-	{
-		username = username.first_name + " " + username.last_name;
-	}
-	else
-	{
-		username = "anonymous";
-	}
 	var messagesRef = new Firebase("https://blistering-fire-5819.firebaseio.com/smartbartly");
 
 	//REGISTER DOM ELEMENTS
