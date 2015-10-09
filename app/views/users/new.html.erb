@@ -1,28 +1,48 @@
-<body id="sign_up_page">
-    <div class='sign_up_form'>
-    	<h1>Sign up</h1><br>
-	    <%= form_for(@user) do |f| %>
-	        <%= f.text_field :first_name, :placeholder => "First name" %><br><br>
-	        <%= f.text_field :last_name, :placeholder => "Last name" %><br><br>
-	        <%= f.email_field :email, :placeholder => "Email" %><br><br>
-	        <%= f.password_field :password, :placeholder => "Password" %><br><br>
-	        <%= f.submit "Create an account", class: "btn-submit" %>
+<div class="row" id='login_page'>
+	<div class="col-md-12">
+	  	<% if @user.errors.any? %>
+	  		<h3>Errors:</h3>
+	  			<% @user.errors.full_messages.each do |message| %>
+	  				<h5 class="alert alert-danger" role="alert"><%= message %></h5>
+	  			<% end %>
 	  	<% end %>
   	</div>
-
-
-  	<div class='login_form'>
-		<h1>Login</h1>
-		<%= form_for @user, url: "/sessions", method: "post" do |f| %>
-			<div>
-				<%= f.text_field :email, placeholder: "Email" %>
+</div>
+<div class="row">
+	<div class='login_form col-md-6'>
+		<div class='panel panel-default'>
+			<div class="panel-heading"><h1>Login</h1></div>
+			<div class="panel-body">
+				<div class="form-group">
+					<%= form_for @user, url: "/sessions", method: "post" do |f| %>	
+						<%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %><br>
+						<%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %><br>
+						<%= f.submit "Sign In", class: "btn btn-primary" %>
+					<% end %>
+				</div>
 			</div>
-			<br>
-			<div>
-				<%= f.password_field :password, placeholder: "Password" %>
-			</div>
-			<br>
-			<%= f.submit "Sign In" %>
-		<% end %>
+		</div>
 	</div>
- </body>
+	<div class='sign_up_form col-md-6'>
+		<div class='panel panel-default'>
+			<div class="panel-heading"><h1>Sign Up</h1></div>
+			<div class="panel-body">
+		    	<div class="form-group">
+				    <%= form_for(@user) do |f| %>
+				        <%= f.text_field :first_name, :placeholder => "First name", class: "form-control", required: true %>
+				        <%= f.text_field :last_name, :placeholder => "Last name", class: "form-control", required: true %><br>
+				        <%= f.email_field :email, :placeholder => "Email", class: "form-control", required: true %>
+				        <%= f.email_field :email_confirmation, :placeholder => "Email Confirmation", class: "form-control", required: true %><br>
+				        <%= f.password_field :password, :placeholder => "Password", class: "form-control", required: true %>
+				        <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", class: "form-control", required: true %><br>
+				        <%= f.submit "Create an account", class: "btn btn-primary" %>
+				  	<% end %>
+			  	</div>
+			</div>
+		</div>
+  	</div>
+</div>
+
+<script type="text/javascript">
+	activateNav("sign")
+</script>

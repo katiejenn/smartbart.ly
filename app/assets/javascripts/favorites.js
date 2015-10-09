@@ -11,9 +11,6 @@ function clickHeart(station)
 	{
 		addFavorite(currentStation);
 	}
-	
-	
-	
 }
 function addFavorite(station) 
 {

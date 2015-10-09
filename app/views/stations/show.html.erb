@@ -1,4 +1,23 @@
 <h1><%= @wantedStation.name %></h1>
+
+<h3>User Tips</h3>
+<% if !@tips.empty? %>
+	<% @tips.each do |tip| %>
+		<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
+	<% end %>
+<% else %>
+	<p>There are no tips for this station yet.</p>
+<% end %>
+
+<% if @current_user %>
+	<%= form_for(@tip, url: tips_path) do |f| %>
+		<%= f.text_area :description, placeholder: "Add a tip about this station!" %>
+		<%= f.hidden_field :user_id, value: @current_user.id %>
+		<%= f.hidden_field :station_id, value: @wantedStation.id %>
+		<%= f.submit "Share", class: "btn-submit" %>
+	<% end %>
+<% end %>
+
 <% if !@stationNorthTimes.empty? %>
 	<h2>Northbound</h2>
 	<% timeCounter = 0 %>
@@ -17,7 +36,7 @@
 			<% end %>
 			<% wellPresent = false %>
 			<% @wantedLine = getLineName(lineNumber) %>
-			<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
+			<h3 class="stationName" style="background-color: <%= @wantedLine.color %>;"><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
 			<table class="table table-hover">
 			<% timeCounter = 0 %>
 			<% line.each do |arrival_time| %>
@@ -75,7 +94,7 @@
 			<% end %>
 			<% wellPresent = false %>
 			<% @wantedLine = getLineName(lineNumber) %>
-			<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
+			<h3 class="stationName" style="background-color: <%= @wantedLine.color %>;"><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
 			<table class="table table-hover">
 			<% timeCounter = 0 %>
 			<% line.each do |arrival_time| %>
@@ -115,20 +134,6 @@
 	<% end %>
 <% end %>
 
-<h3>User Tips</h3>
-<% if !@tips.empty? %>
-	<% @tips.each do |tip| %>
-		<p><%= "#{tip.user.first_name} #{tip.user.last_name} on #{tip.created_at.to_formatted_s(:long_ordinal)} said: #{tip.description}" %></p>
-	<% end %>
-<% else %>
-	<p>There are no tips for this station yet.</p>
-<% end %>
-
-<% if @current_user %>
-	<%= form_for(@tip, url: tips_path) do |f| %>
-		<%= f.text_area :description, placeholder: "Add a tip about this station!" %>
-		<%= f.hidden_field :user_id, value: @current_user.id %>
-		<%= f.hidden_field :station_id, value: @wantedStation.id %>
-		<%= f.submit "Share", class: "btn-submit" %>
-	<% end %>
-<% end %>
+<script type="text/javascript">
+	activateNav("station");
+</script>

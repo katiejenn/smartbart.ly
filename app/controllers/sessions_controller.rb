@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
 			login(@user)
 			redirect_to "/users/#{@user.id}"
 		else
-			redirect_to "/sign_in"
+			@user = User.new
+			@user.errors[:base] << "Password or Email is incorrect."
+			render :new
 		end
 	end
 
