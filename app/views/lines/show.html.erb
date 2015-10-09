@@ -8,7 +8,7 @@
 
 			  	
 					<footer>
-						<input type='text' id='messageInput'  placeholder="Hows your train?">
+						<input type='text' id='messageInput', placeholder="How's your train?", class="form-control", cols=50, rows=4>
 					</footer>
 				
 		</div>
@@ -25,10 +25,10 @@
 
 		<% if @current_user %>
 			<%= form_for(@tip, url: tips_path) do |f| %>
-				<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
+				<%= f.text_area :description, placeholder: "Add a tip about this line!", class: "form-control", cols: 50, rows: 4 %>
 				<%= f.hidden_field :user_id, value: @current_user.id %>
 				<%= f.hidden_field :line_id, value: @line.number %>
-				<%= f.submit "Share", class: "btn-submit" %>
+				<%= f.submit "Share", class: "btn btn-primary" %>
 			<% end %>
 		<% end %>
 		</div>
