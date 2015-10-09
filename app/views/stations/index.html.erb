@@ -7,7 +7,7 @@
 		<div class="col-md-3" id="stationlinks">
 				<% @stations.each do |station| %>
 				    <% tagged = false %>
-				    <%if @current_user %>
+				    <%if signed_in? %>
 						<% @favorite_stations.each do |fs|%>
 							<% if station == fs %>
 								<span data-_id="<%=station.id%>" class="hearted" onclick="clickHeart(this)">
@@ -17,9 +17,15 @@
 							<% end %>
 						<% end %>
 					<% end %>
-					<% if tagged == false %>
-						<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
-								<span class="fa fa-heart" aria-hidden="true"></span>
+					<%if signed_in? %>
+						<% if tagged == false %>
+							<span data-_id="<%=station.id%>" onclick="clickHeart(this)">
+									<span class="fa fa-heart" aria-hidden="true"></span>
+							</span>
+						<% end %>
+					<% else %>
+						<span data-_id="<%=station.id%>">
+							<span class="fa fa-heart" aria-hidden="true"></span>
 						</span>
 					<% end %>
 					<%= link_to station.name, station_path(station.slug) %><br>
