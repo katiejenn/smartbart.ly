@@ -9,4 +9,22 @@
 #BARTmap {
 	max-width: 60%;
 	max-height: 60%;
+	display: inline;
 }
+
+.red {
+	color: red;
+}
+
+#stationindex {
+  margin: 0;
+  overflow: hidden;
+  height:100%;
+}
+
+#stationlinks {
+	display: inline;
+	overflow-y: scroll;
+	max-height: 575px;
+}
+
