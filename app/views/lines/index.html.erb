@@ -5,11 +5,9 @@
 			<img src="../../assets/BART_cc_map_20141029.png" alt="BART map" id="BARTmap" class="img-responsive img-rounded">
 		</div>
 		<div class="col-md-5" id="lineLinks">
-			<ul class="list-unstyled">
 			<% @allLines.each do |line| %>
-				<li style="background-color: <%= line.color %>;"><h3><%= link_to line.name, line_path(line.slug) %></h3></li>
+				<h3 style="background-color: <%= line.color %>;"><%= link_to line.name, line_path(line.slug) %></h3>
 			<% end %>
-			</ul>
 		</div>
 	</div>
 </div>
