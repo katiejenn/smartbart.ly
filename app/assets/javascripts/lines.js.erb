@@ -68,3 +68,9 @@ function initFB(username, currentline) {
 		messageList[0].scrollTop = messageList[0].scrollHeight;
 	});
 }
+
+function activateNav(type)
+{
+	$("#" + type +"Nav").addClass("active");
+	$("#" + type + "Nav a").wrapInner("<strong>");
+}

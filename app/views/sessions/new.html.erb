@@ -1,24 +1,28 @@
-<body id='login_page'>
-	<center>
-		<div class='login_form'>
+<div class="row" id='login_page'>
+	<div class='login_form col-md-6'>
 			<h1>Login</h1>
-			<%= form_for @user, url: "/sessions", method: "post" do |f| %>	
-				<%= f.text_field :email, placeholder: "Email" %><br><br>
-				<%= f.password_field :password, placeholder: "Password" %><br><br>
-				<%= f.submit "Sign In" %>
-			<% end %>
-		</div>
-	</center>
-	<div class='separator'></div>
-
-	 <div class='sign_up_form'>
+			<div class="form-group">
+				<%= form_for @user, url: "/sessions", method: "post" do |f| %>	
+					<%= f.email_field :email, placeholder: "Email", class: "form-control" %><br>
+					<%= f.password_field :password, placeholder: "Password", class: "form-control" %><br>
+					<%= f.submit "Sign In", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+	</div>
+	<div class='sign_up_form col-md-6'>
     	<h1>Sign up</h1>
-	    <%= form_for(@user) do |f| %>
-	        <%= f.text_field :first_name, :placeholder => "First name" %><br><br>
-	        <%= f.text_field :last_name, :placeholder => "Last name" %><br><br>
-	        <%= f.email_field :email, :placeholder => "Email" %><br><br>
-	        <%= f.password_field :password, :placeholder => "Password" %><br><br>
-	        <%= f.submit "Create an account", class: "btn-submit" %>
-	  	<% end %>
+    	<div class="form-group">
+		    <%= form_for(@user) do |f| %>
+		        <%= f.text_field :first_name, :placeholder => "First name", class: "form-control" %><br>
+		        <%= f.text_field :last_name, :placeholder => "Last name", class: "form-control" %><br>
+		        <%= f.email_field :email, :placeholder => "Email", class: "form-control" %><br>
+		        <%= f.password_field :password, :placeholder => "Password", class: "form-control" %><br>
+		        <%= f.submit "Create an account", class: "btn btn-primary" %>
+		  	<% end %>
+		</div>
   	</div>
-</body>
+</div>
+
+<script type="text/javascript">
+	activateNav("sign")
+</script>

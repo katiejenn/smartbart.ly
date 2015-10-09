@@ -97,5 +97,6 @@ Timetables:<br>
 <% end %>
 
 <script type="text/javascript">
-	initFB('<%= @current_user %>', '<%= @line.name %>')
+	initFB('<%= @current_user %>', '<%= @line.name %>');
+	activateNav("line");
 </script>

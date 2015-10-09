@@ -1,4 +1,8 @@
-<h1>BART Lines</h1>
+<h1>Select A Line</h1>
 <% @allLines.each do |line| %>
 	<%= link_to line.name, line_path(line.slug) %><br>
 <% end %>
+
+<script type="text/javascript">
+	activateNav("line")
+</script>
