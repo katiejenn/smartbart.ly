@@ -26,30 +26,44 @@ Stations:<br>
 <% end %>
 <br>
 Timetables:<br>
-<% if false %>
-	<% @lineTimes["root"]["route"]["train"].each do |train| %>
-		Train #<%= train["index"] %><br>
-		<% train["stop"].each do |stationAbbreviation| %>
-			<% station = getStationByAbbreviation(stationAbbreviation["station"]) %>
-			<% if stationAbbreviation["origTime"] != nil && Time.parse(stationAbbreviation["origTime"]) > Time.now %>
-				<%= link_to station.name, station_path(station.slug) %>: <%= stationAbbreviation["origTime"]%><br>
+<% trainIndex = nil %>
+<% timeCounter = 0 %>
+<% @lineTimes.each do |train| %>
+	<% if train.value > Time.now %>
+		<% timeCounter += 1 %>
+		<% if trainIndex == nil || trainIndex != train.train_index%>
+			<% trainIndex = train.train_index %>
+			<% timeCounter = 0 %>
+			<% if trainIndex != nil %>
+							</tbody>
+						</table>
+					</div>
+				</div>				
 			<% end %>
+			<br>Train #<%= trainIndex %><br>
+			<table class="table table-hover">
+		<% elsif trainIndex == train.train_index && timeCounter == 4 %>
+			</table>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#<%= trainIndex %>Times" aria-expanded="false" aria-controls="<%= trainIndex %>Times">
+			  See More Times
+			</button>
+			<div class="collapse" id="<%= trainIndex %>Times">
+			  <div class="well">
+			  	<table class="table table-hover">
+			  		<tbody>
+			  			<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+		<% elsif trainIndex == train.train_index && timeCounter > 4 %>
+			<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+		<% else %>
+			<% station = getStationById(train.station_id) %>
+				<tbody>
+					<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
+				</tbody>
 		<% end %>
-		<br>
 	<% end %>
 <% end %>
 
-<% trainIndex = nil %>
-<% @lineTimes.each do |train| %>
-	<% if train.value > Time.now %>
-		<% if trainIndex == nil || trainIndex != train.train_index%>
-			<% trainIndex = train.train_index %>
-			<br>Train #<%= trainIndex %><br>
-		<% end %>
-		<% station = getStationById(train.station_id) %>
-		<%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %><br>
-	<% end %>
-<% end %>
+
 
 <h3>User Tips</h3>
 <% if !@tips.empty? %>
@@ -70,7 +84,7 @@ Timetables:<br>
 <% end %>
 
 <script type="text/javascript">
-	<% if @current_user != nil %>	
+	<% if @current_user != nil %>
 		initFB('<%= @current_user.first_name + @current_user.last_name %>')
 	<% end %>
 </script>
