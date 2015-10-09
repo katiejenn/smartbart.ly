@@ -76,18 +76,18 @@
 		<p>There are no tips for this line yet.</p>
 	<% end %>
 
+
 	<% if @current_user %>
 		<%= form_for(@tip, url: tips_path) do |f| %>
 			<%= f.text_area :description, placeholder: "Add a tip about this line!" %>
 			<%= f.hidden_field :user_id, value: @current_user.id %>
 			<%= f.hidden_field :line_id, value: @line.number %>
 			<%= f.submit "Share", class: "btn-submit" %>
-		<% end %>
 	<% end %>
 
 	<script type="text/javascript">
 		<% if @current_user != nil %>
-			initFB('<%= @current_user.first_name + @current_user.last_name %>')
+			initFB('<%= @current_user.first_name + " " + @current_user.last_name %>', '<%= @line.name %>')
 		<% end %>
 	</script>
 </div>
