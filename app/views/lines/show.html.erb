@@ -93,6 +93,11 @@
 <% end %>
 
 <script type="text/javascript">
-	initFB('<%= @current_user %>', '<%= @line.name %>');
+	<% if signed_in? %>
+		initFB('<%= @current_user.first_name %>' + ' ' + '<%= @current_user.last_name %>', '<%= @line.name %>');
+	<% else %>
+		initFB('anonymous', '<%= @line.name %>');
+	<% end %>
+	
 	activateNav("line");
 </script>
