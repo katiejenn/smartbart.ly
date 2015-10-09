@@ -1,4 +1,4 @@
-<body id="new_user">
+<body id="sign_up_page">
     <div class='sign_up_form'>
     	<h1>Sign up</h1><br>
 	    <%= form_for(@user) do |f| %>
@@ -9,4 +9,20 @@
 	        <%= f.submit "Create an account", class: "btn-submit" %>
 	  	<% end %>
   	</div>
+
+
+  	<div class='login_form'>
+		<h1>Login</h1>
+		<%= form_for @user, url: "/sessions", method: "post" do |f| %>
+			<div>
+				<%= f.text_field :email, placeholder: "Email" %>
+			</div>
+			<br>
+			<div>
+				<%= f.password_field :password, placeholder: "Password" %>
+			</div>
+			<br>
+			<%= f.submit "Sign In" %>
+		<% end %>
+	</div>
  </body>
