@@ -94,7 +94,7 @@
 			<% end %>
 			<% wellPresent = false %>
 			<% @wantedLine = getLineName(lineNumber) %>
-			<h3><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
+			<h3 class="stationName" style="background-color: <%= @wantedLine.color %>;"><%= link_to @wantedLine.name, line_path(@wantedLine.slug) %></h3>
 			<table class="table table-hover">
 			<% timeCounter = 0 %>
 			<% line.each do |arrival_time| %>
