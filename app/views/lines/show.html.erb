@@ -71,6 +71,6 @@ Timetables:<br>
 
 <script type="text/javascript">
 	<% if @current_user != nil %>	
-		initFB('<%= @current_user.first_name + @current_user.last_name %>')
+		initFB('<%= @current_user.first_name + " " + @current_user.last_name %>', '<%= @line.name %>')
 	<% end %>
 </script>

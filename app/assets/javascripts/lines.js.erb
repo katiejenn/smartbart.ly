@@ -1,4 +1,4 @@
-function initFB(username) {
+function initFB(username, currentline) {
 	var messagesRef = new Firebase("https://blistering-fire-5819.firebaseio.com/smartbartly");
 
 	//REGISTER DOM ELEMENTS
@@ -16,7 +16,7 @@ function initFB(username) {
 		  var time = Date.now();
 
 		  //SAVE DATA TO FIREBASE AND EMPTY FIELD
-		  messagesRef.push({user__name: username, text: message, time: time});
+		  messagesRef.push({user__name: username, text: message, time: time, line: currentline});
 		  messageField.val('');
 		}
 	});
@@ -34,7 +34,9 @@ function initFB(username) {
 
 		//CREATE ELEMENTS MESSAGE & SANITIZE TEXT
 		var messageElement = $("<li>");
-		var nameElement = $("<strong class='example-chat-username'></strong>");
+		if (!data.hasOwnProperty('line')){
+		var nameElement = $("<strong class='example-chat-username red'></strong>");
+		} else var nameElement = $("<strong class='example-chat-username'></strong>");
 		var timeElement = Math.floor((Date.now() - time)/60000);
 		var timeUnits;
 
@@ -50,7 +52,9 @@ function initFB(username) {
 		messageElement.text(message).prepend(nameElement).prepend(timeElement + timeUnits);
 
 		//ADD MESSAGE
-		messageList.append(messageElement)
+		if ((data.line === currentline) || !data.hasOwnProperty('line')){
+			messageList.append(messageElement)
+		}
 
 		//SCROLL TO BOTTOM OF MESSAGE LIST
 		messageList[0].scrollTop = messageList[0].scrollHeight;
