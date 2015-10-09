@@ -16,4 +16,7 @@
  *= require_self
  *=
  */
- 
+
+.red {
+	color: red;
+}

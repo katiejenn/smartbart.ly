@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 	<h1><%= @line.name %></h1>
 	<div class="line-color" style="background-color: <%= @line.color %>;">
 		Line Color:
@@ -44,6 +44,7 @@
 				<br>Train #<%= trainIndex %><br>
 				<table class="table table-hover">
 			<% elsif trainIndex == train.train_index && timeCounter == 4 %>
+					</tbody>
 				</table>
 				<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#<%= trainIndex %>Times" aria-expanded="false" aria-controls="<%= trainIndex %>Times">
 				  See More Times
@@ -58,9 +59,7 @@
 				<tr><td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td></tr>
 			<% else %>
 				<% station = getStationById(train.station_id) %>
-					<tbody>
-						<td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td>
-					</tbody>
+					<tr><td><%= link_to train.station.name, station_path(train.station.slug) %>: <%= train.value.getlocal("-07:00").strftime("%I:%M %p") %></td></tr>
 			<% end %>
 		<% end %>
 	<% end %>
@@ -83,6 +82,7 @@
 			<%= f.hidden_field :user_id, value: @current_user.id %>
 			<%= f.hidden_field :line_id, value: @line.number %>
 			<%= f.submit "Share", class: "btn-submit" %>
+		<% end %>
 	<% end %>
 
 	<script type="text/javascript">
