@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
+	#NOTE: Great validations!
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :email, presence: true
+	#NOTE: Consider increasing the password minimum to at least 6
 	validates :password, length: {minimum: 1}
 	validates_uniqueness_of :email
 	validates :email, :password_digest, confirmation: true
