@@ -1,0 +1,28 @@
+// Place all the styles related to the stations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hearted{
+	color: red
+}
+
+.red {
+	color: red;
+}
+
+#stationindex {
+  margin: 0;
+  overflow: hidden;
+  height:100%;
+}
+
+#stationlinks {
+	display: inline;
+	overflow-y: scroll;
+	max-height: 585px;
+}
+
+.stationName a:link {color: #000000; text-decoration: underline; }
+.stationName a:active {color: #000000; text-decoration: underline; }
+.stationName a:visited {color: #000000; text-decoration: underline; }
+.stationName a:hover {color: #000000; text-decoration: none; }
