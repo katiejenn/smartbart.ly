@@ -9,6 +9,7 @@ class StationsController < ApplicationController
   end
 
   def show
+    # NOTE: rather than creating empty arrays that get passed into the methods below and then filled. I would alter the below methods to not take an array but, instead return one. Think difference between `.each` and `.map`.
   	@stationNorthLines = []
     @stationSouthLines = []
   	@stationNorthTimes = {}
@@ -20,6 +21,8 @@ class StationsController < ApplicationController
 
   	# get the specified station's info
     station = BartApi.station("stninfo", {orig: @wantedStation.abbreviation})
+
+    #NOTE: Great organization & modularity using `getLines` & `getStationTimes`. It's common to use snake_case rather than CamelCase in ruby.
 
   	# drill down to the routes we need and append them to the array of routes
   	getLines(station, "north_routes")

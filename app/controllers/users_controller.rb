@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			login(@user)
+			#NOTE: `<prefix>_path` syntax prefered
 			redirect_to "/users/#{@user.id}"
 		else
 			render :new
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		#NOTE: You can also use `User.find(params[:id])`. Consider making a before action if you find this needing to happen more than once, here or in other controllers.
 		@user = User.find_by({id: params[:id]})
 	end
 

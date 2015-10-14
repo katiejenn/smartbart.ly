@@ -48,6 +48,7 @@
 <% wellPresent = false %>
 <% @lineTimes.each do |train| %>
 	<% if train.value > Time.now %>
+		<% #NOTE: This is a lot of logic for the view %>
 		<% station = getStationById(train.station_id) %>
 		<% if trainIndex == nil || trainIndex != train.train_index%>
 			<% trainIndex = train.train_index %>
